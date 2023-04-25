@@ -1,4 +1,4 @@
-package stx.assert.g.eq;
+package eu.ohmrun.glot.eq;
 
 import stx.g.lang.expr.GTypeParam as GTypeParamT;
 

@@ -1,4 +1,4 @@
-package stx.assert.g.eq;
+package eu.ohmrun.glot.eq;
 
 import stx.g.lang.expr.GExpr as GExprT;
 
@@ -43,7 +43,7 @@ class GExpr extends stx.assert.eq.term.Base<GExprT> {
       case [GEParenthesis(eI),GEParenthesis(eII)] :
         comply(eI,eII);
       case [GEObjectDecl(fieldsI),GEObjectDecl(fieldsII)] :
-        final cons = () -> RedBlackSet.make(Comparable.Anon(new GObjectField(),new stx.assert.g.ord.GObjectField()));
+        final cons = () -> RedBlackSet.make(Comparable.Anon(new GObjectField(),new eu.ohmrun.glot.ord.GObjectField()));
         var lset = cons();
             lset = lset.concat(fieldsI);
         var rset = cons();     

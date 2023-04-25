@@ -1,4 +1,4 @@
-package stx.assert.g.eq;
+package eu.ohmrun.glot.eq;
 
 import stx.g.lang.expr.GComplexType as GComplexTypeT;
 
@@ -18,15 +18,15 @@ class GComplexType extends stx.assert.eq.term.Base<GComplexTypeT> {
       case [GTParent(tI),GTParent(tII)]                       : 
         comply(tI,tII);
       case [GTExtend(pI,fieldsI) ,GTExtend(pII,fieldsII)]     : 
-        var lset = RedBlackSet.make(Comparable.Anon(new GTypePath(),new stx.assert.g.ord.GTypePath()));
+        var lset = RedBlackSet.make(Comparable.Anon(new GTypePath(),new eu.ohmrun.glot.ord.GTypePath()));
             lset = lset.concat(pI);
-        var rset = RedBlackSet.make(Comparable.Anon(new GTypePath(),new stx.assert.g.ord.GTypePath()));
+        var rset = RedBlackSet.make(Comparable.Anon(new GTypePath(),new eu.ohmrun.glot.ord.GTypePath()));
             rset = rset.concat(pII);
         var eq   = lset.equals(rset);
         if(eq.is_ok()){
-          var lset = RedBlackSet.make(Comparable.Anon(new GField(),new stx.assert.g.ord.GField()));
+          var lset = RedBlackSet.make(Comparable.Anon(new GField(),new eu.ohmrun.glot.ord.GField()));
             lset = lset.concat(fieldsI);
-          var rset = RedBlackSet.make(Comparable.Anon(new GField(),new stx.assert.g.ord.GField()));
+          var rset = RedBlackSet.make(Comparable.Anon(new GField(),new eu.ohmrun.glot.ord.GField()));
             rset = rset.concat(fieldsII);
           eq = lset.equals(rset);
         }
@@ -40,9 +40,9 @@ class GComplexType extends stx.assert.eq.term.Base<GComplexTypeT> {
         }
         eq;
       case [GTIntersection(tlI),GTIntersection(tlII)]         : 
-        var lset = RedBlackSet.make(Comparable.Anon(this,new stx.assert.g.ord.GComplexType()));
+        var lset = RedBlackSet.make(Comparable.Anon(this,new eu.ohmrun.glot.ord.GComplexType()));
             lset = lset.concat(tlI);
-        var rset = RedBlackSet.make(Comparable.Anon(this,new stx.assert.g.ord.GComplexType()));
+        var rset = RedBlackSet.make(Comparable.Anon(this,new eu.ohmrun.glot.ord.GComplexType()));
             rset = rset.concat(tlII);
         lset.equals(rset);
       case [l,r]                                              : 

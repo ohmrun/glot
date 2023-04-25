@@ -1,4 +1,4 @@
-package stx.assert.g.ord;
+package eu.ohmrun.glot.ord;
 
 import stx.g.lang.expr.GComplexType as GComplexTypeT;
 
@@ -19,15 +19,15 @@ class GComplexType extends OrdCls<GComplexTypeT>{
       case [GTParent(tI),GTParent(tII)]                       : 
         comply(tI,tII);
       case [GTExtend(pI,fieldsI) ,GTExtend(pII,fieldsII)]     : 
-        var lset = RedBlackSet.make(Comparable.Anon(new stx.assert.g.eq.GTypePath(),new GTypePath()));
+        var lset = RedBlackSet.make(Comparable.Anon(new eu.ohmrun.glot.eq.GTypePath(),new GTypePath()));
             lset = lset.concat(pI);
-        var rset = RedBlackSet.make(Comparable.Anon(new stx.assert.g.eq.GTypePath(),new GTypePath()));
+        var rset = RedBlackSet.make(Comparable.Anon(new eu.ohmrun.glot.eq.GTypePath(),new GTypePath()));
             rset = rset.concat(pII);
         var ord  = lset.less_than(rset);
         if(ord.is_not_less_than()){
-          var lset = RedBlackSet.make(Comparable.Anon(new stx.assert.g.eq.GField(),new GField()));
+          var lset = RedBlackSet.make(Comparable.Anon(new eu.ohmrun.glot.eq.GField(),new GField()));
             lset = lset.concat(fieldsI);
-          var rset = RedBlackSet.make(Comparable.Anon(new stx.assert.g.eq.GField(),new GField()));
+          var rset = RedBlackSet.make(Comparable.Anon(new eu.ohmrun.glot.eq.GField(),new GField()));
             rset = rset.concat(fieldsII);
           ord = lset.less_than(rset);
         }
@@ -41,9 +41,9 @@ class GComplexType extends OrdCls<GComplexTypeT>{
         }
         ord;
       case [GTIntersection(tlI),GTIntersection(tlII)]         : 
-        var lset = RedBlackSet.make(Comparable.Anon(new stx.assert.g.eq.GComplexType(),new GComplexType()));
+        var lset = RedBlackSet.make(Comparable.Anon(new eu.ohmrun.glot.eq.GComplexType(),new GComplexType()));
             lset = lset.concat(tlI);
-        var rset = RedBlackSet.make(Comparable.Anon(new stx.assert.g.eq.GComplexType(),new GComplexType()));
+        var rset = RedBlackSet.make(Comparable.Anon(new eu.ohmrun.glot.eq.GComplexType(),new GComplexType()));
             rset = rset.concat(tlII);
         lset.less_than(rset);
       case [l,r]                                              : 

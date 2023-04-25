@@ -1,4 +1,4 @@
-package stx.assert.g.ord;
+package eu.ohmrun.glot.ord;
 
 import stx.g.lang.expr.GFieldType as GFieldTypeT;
 

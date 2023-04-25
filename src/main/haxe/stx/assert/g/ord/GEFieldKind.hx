@@ -1,4 +1,4 @@
-package stx.assert.g.ord;
+package eu.ohmrun.glot.ord;
 
 #if (haxe_ver > 4.205)
 import stx.g.lang.expr.GEFieldKind as GEFieldKindT;

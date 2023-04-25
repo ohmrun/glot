@@ -1,4 +1,4 @@
-package stx.assert.g.eq;
+package eu.ohmrun.glot.eq;
 
 import stx.g.lang.expr.GField as GFieldT;
 
@@ -9,7 +9,7 @@ class GField extends stx.assert.eq.term.Base<GFieldT> {
       eq = new GFieldType().comply(lhs.kind,rhs.kind);
     }
     if(eq.is_ok()){
-      final ctr = () -> RedBlackSet.make(Comparable.Anon(new GAccess(),new stx.assert.g.ord.GAccess()));
+      final ctr = () -> RedBlackSet.make(Comparable.Anon(new GAccess(),new eu.ohmrun.glot.ord.GAccess()));
       var lset = ctr();
           lset = lset.concat(__.option(lhs.access).defv([].imm()));
       var rset = ctr();

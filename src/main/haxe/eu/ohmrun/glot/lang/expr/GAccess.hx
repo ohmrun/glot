@@ -7,17 +7,17 @@ class GAccessCtr extends Clazz{
 	private function lift(self:GAccessSum):GAccess{
 		return GAccess.lift(self);
 	}
-	public function Public() return lift(GAPublic);
-	public function Private() return lift(GAPrivate);
-	public function Static() return lift(GAStatic);
-	public function Override() return lift(GAOverride);
-	public function Dynamic() return lift(GADynamic);
-	public function Inline() return lift(GAInline);
-	public function Macro() return lift(GAMacro);
-	public function Final() return lift(GAFinal);
-	public function Extern() return lift(GAExtern);
-	public function Abstract() return lift(GAAbstract);
-	public function Overload() return lift(GAOverload);
+	public function Public() 		return lift(GAPublic);
+	public function Private() 	return lift(GAPrivate);
+	public function Static() 		return lift(GAStatic);
+	public function Override() 	return lift(GAOverride);
+	public function Dynamic() 	return lift(GADynamic);
+	public function Inline() 		return lift(GAInline);
+	public function Macro() 		return lift(GAMacro);
+	public function Final() 		return lift(GAFinal);
+	public function Extern() 		return lift(GAExtern);
+	public function Abstract() 	return lift(GAAbstract);
+	public function Overload() 	return lift(GAOverload);
 }
 enum GAccessSum {
 	GAPublic;

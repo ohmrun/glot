@@ -1,0 +1,8 @@
+{
+  "build" : {
+    "-L" : ["stx_pico","stx_nano"],
+    "test" : {
+
+    }
+  }
+}

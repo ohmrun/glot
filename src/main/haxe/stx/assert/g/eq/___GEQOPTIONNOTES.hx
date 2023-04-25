@@ -1,4 +1,4 @@
-package stx.assert.g.eq;
+package eu.ohmrun.glot.eq;
 
 typedef OPTIONS = {
   final literals_ignore_postfix : Bool;  
