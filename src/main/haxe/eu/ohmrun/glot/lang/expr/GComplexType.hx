@@ -70,7 +70,7 @@ abstract GComplexType(GComplexTypeSum) from GComplexTypeSum to GComplexTypeSum{
 }
 class GComplexTypeLift{
 	static public function to_macro_at(self:GComplexType,pos:Position){
-		return switch(self){
+		return @:privateAccess switch(self){
 			case GTPath( p )             : TPath( p.to_macro_at(pos) );
 			case GTFunction( args , ret ): TFunction( args.map(arg -> to_macro_at(arg,pos)).prj() , to_macro_at(ret,pos) );
 			case GTAnonymous( fields  )  : TAnonymous( fields.map(x -> x.to_macro_at(pos)).prj()  );

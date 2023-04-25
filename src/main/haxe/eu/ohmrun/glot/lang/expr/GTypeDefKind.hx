@@ -63,7 +63,7 @@ abstract GTypeDefKind(GTypeDefKindSum) from GTypeDefKindSum to GTypeDefKindSum{
 }
 class GTypeDefKindLift{
   static public function to_macro_at(self:GTypeDefKind,pos:Position):TypeDefKind{
-    return switch(self){
+    return @:privateAccess switch(self){
       case GTDEnum               : TDEnum;
       case GTDStructure          : TDStructure;
       case GTDClass( superClass , interfaces , isInterface , isFinal , isAbstract ) : 

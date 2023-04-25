@@ -1,6 +1,13 @@
 {
   "build" : {
-    "-L" : ["stx_pico","stx_nano"],
+    "-L" : ["stx_pico","stx_nano","stx_ds"],
+    "-cp" : "src/main/haxe",
+    "unit" : {
+      "--macro" : [
+        "include('eu.ohmrun.glot',true)",
+        "include('stx.assert.glot',true)"
+      ]
+    },
     "test" : {
 
     }

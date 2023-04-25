@@ -6,7 +6,7 @@ class Lang{
   }
 }
 
-typedef GFailure            = stx.fail.GFailure;
+typedef GlotFailure            = stx.fail.GlotFailure;
 typedef GSource             = eu.ohmrun.glot.lang.GSource;
 
 

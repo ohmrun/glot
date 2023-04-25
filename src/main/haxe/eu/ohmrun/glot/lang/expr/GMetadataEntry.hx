@@ -33,7 +33,7 @@ typedef GMetadataEntryDef = {
 }
 class GMetadataEntryLift{
   static public function to_macro_at(self:GMetadataEntry,pos:Position):MetadataEntry{
-    return {
+    return @:privateAccess {
       name    : self.name,
 	    params  : __.option(self.params).map(x -> x.map(y -> y.to_macro_at(pos)).prj()).defv([]),
       pos     : pos

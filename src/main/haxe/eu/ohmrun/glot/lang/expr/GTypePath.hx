@@ -65,7 +65,7 @@ typedef GTypePathDef = {
 }
 class GTypePathLift{
   static public function to_macro_at(self:GTypePath,pos:Position):TypePath{
-    return {
+    return @:privateAccess {
       name    : self.name,
       pack    : __.option(self.pack).map(x -> x.prj()).defv([]),
       params  : __.option(self.params).map(x -> x.map(y -> y.to_macro_at(pos)).prj()).defv([]),

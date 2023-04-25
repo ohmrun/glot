@@ -20,7 +20,7 @@ package eu.ohmrun.glot.lang.expr;
 }
 class GMetadataLift{
   static public function to_macro_at(self:GMetadata,pos:Position):Metadata{
-    return self.map(e -> e.to_macro_at(pos)).prj();
+    return @:privateAccess self.map(e -> e.to_macro_at(pos)).prj();
   }
   // static public function denote(self:GMetadata){
   //   final e = __.g().expr();

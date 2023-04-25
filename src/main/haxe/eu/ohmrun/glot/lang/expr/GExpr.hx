@@ -175,7 +175,7 @@ class GExprLift{
     return {
       pos     : pos,
       expr    :
-        switch(self){
+        @:privateAccess switch(self){
           case GEConst(c)                     : EConst(c.to_macro_at(pos));
           case GEArray(e1, e2)                : EArray(f(e1), f(e2));
           case GEBinop(op, e1, e2)            : EBinop(op.to_macro_at(pos), f(e1), f(e2));

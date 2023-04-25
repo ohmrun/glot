@@ -69,7 +69,7 @@ typedef GTypeDefinitionDef = {
 class GTypeDefinitionLift{
   static public function to_macro_at(self:GTypeDefinition,pos:Position):haxe.macro.Expr.TypeDefinition{
     __.log().debug('gtypedefinition.to_macro_at');
-    return {
+    return @:privateAccess {
       name        : self.name,
       pack        : self.pack.prj(),
       kind        : self.kind.to_macro_at(pos),

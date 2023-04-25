@@ -48,7 +48,7 @@ typedef GFieldDef = {
 }
 class GFieldLift{
   static public function to_macro_at(self:GField,pos:Position):Field{
-    return {
+    return @:privateAccess {
       name      : self.name,
       kind      : self.kind.to_macro_at(pos),
       access    : __.option(self.access).map(x -> x.map(y -> y.to_macro_at(pos)).prj()).defv([]),
