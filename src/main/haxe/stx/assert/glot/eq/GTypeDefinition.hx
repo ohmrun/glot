@@ -1,6 +1,6 @@
 package stx.assert.glot.eq;
 
-import eu.ohmrun.glot.lang.expr.GTypeDefinition as GTypeDefinitionT;
+import eu.ohmrun.glot.expr.GTypeDefinition as GTypeDefinitionT;
 
 class GTypeDefinition extends stx.assert.eq.term.Base<GTypeDefinitionT> {
   public function comply(lhs:GTypeDefinitionT,rhs:GTypeDefinitionT){

@@ -1,6 +1,6 @@
 package stx.assert.glot.ord;
 
-import eu.ohmrun.glot.lang.expr.GTypeDefKind as GTypeDefKindT;
+import eu.ohmrun.glot.expr.GTypeDefKind as GTypeDefKindT;
 
 class GTypeDefKind extends OrdCls<GTypeDefKindT>{
   public function new(){}

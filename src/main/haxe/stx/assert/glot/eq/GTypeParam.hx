@@ -1,6 +1,6 @@
 package stx.assert.glot.eq;
 
-import eu.ohmrun.glot.lang.expr.GTypeParam as GTypeParamT;
+import eu.ohmrun.glot.expr.GTypeParam as GTypeParamT;
 
 class GTypeParam extends stx.assert.eq.term.Base<GTypeParamT> {
   public function comply(lhs:GTypeParamT,rhs:GTypeParamT){

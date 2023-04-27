@@ -1,6 +1,6 @@
 package stx.assert.glot.ord;
 
-import eu.ohmrun.glot.lang.expr.GAccess as GAccessT;
+import eu.ohmrun.glot.expr.GAccess as GAccessT;
 
 class GAccess extends OrdCls<GAccessT>{
   public function new(){}

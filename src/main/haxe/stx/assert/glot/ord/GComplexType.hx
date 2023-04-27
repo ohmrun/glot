@@ -1,6 +1,6 @@
 package stx.assert.glot.ord;
 
-import eu.ohmrun.glot.lang.expr.GComplexType as GComplexTypeT;
+import eu.ohmrun.glot.expr.GComplexType as GComplexTypeT;
 
 class GComplexType extends OrdCls<GComplexTypeT>{
   public function new(){}

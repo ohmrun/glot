@@ -1,6 +1,6 @@
 package stx.assert.glot.ord;
 
-import eu.ohmrun.glot.lang.expr.GTypeParam as GTypeParamT;
+import eu.ohmrun.glot.expr.GTypeParam as GTypeParamT;
 
 class GTypeParam extends OrdCls<GTypeParamT>{
   public function new(){}

@@ -1,6 +1,6 @@
 package stx.assert.glot.eq;
 
-import eu.ohmrun.glot.lang.expr.GMetadata as GMetadataT;
+import eu.ohmrun.glot.expr.GMetadata as GMetadataT;
 
 class GMetadata extends stx.assert.eq.term.Base<GMetadataT> {
   public function comply(lhs:GMetadataT,rhs:GMetadataT){

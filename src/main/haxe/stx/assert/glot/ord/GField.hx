@@ -1,6 +1,6 @@
 package stx.assert.glot.ord;
 
-import eu.ohmrun.glot.lang.expr.GField as GFieldT;
+import eu.ohmrun.glot.expr.GField as GFieldT;
 
 class GField extends OrdCls<GFieldT>{
   public function new(){}

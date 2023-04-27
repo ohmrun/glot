@@ -1,6 +1,6 @@
 package stx.assert.glot.ord;
 
-import eu.ohmrun.glot.lang.expr.GStringLiteralKind as GStringLiteralKindT;
+import eu.ohmrun.glot.expr.GStringLiteralKind as GStringLiteralKindT;
 
 class GStringLiteralKind extends OrdCls<GStringLiteralKindT>{
   public function new(){}

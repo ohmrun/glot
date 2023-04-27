@@ -1,6 +1,6 @@
 package stx.assert.glot.eq;
 
-import eu.ohmrun.glot.lang.expr.GComplexType as GComplexTypeT;
+import eu.ohmrun.glot.expr.GComplexType as GComplexTypeT;
 
 class GComplexType extends stx.assert.eq.term.Base<GComplexTypeT> {
   public function comply(lhs:GComplexTypeT,rhs:GComplexTypeT){

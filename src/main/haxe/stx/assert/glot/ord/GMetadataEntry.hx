@@ -1,6 +1,6 @@
 package stx.assert.glot.ord;
 
-import eu.ohmrun.glot.lang.expr.GMetadataEntry as GMetadataEntryT;
+import eu.ohmrun.glot.expr.GMetadataEntry as GMetadataEntryT;
 
 class GMetadataEntry extends OrdCls<GMetadataEntryT>{
   public function new(){}

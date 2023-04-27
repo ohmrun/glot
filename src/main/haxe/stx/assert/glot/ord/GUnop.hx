@@ -1,6 +1,6 @@
 package stx.assert.glot.ord;
 
-import eu.ohmrun.glot.lang.expr.GUnop as GUnopT;
+import eu.ohmrun.glot.expr.GUnop as GUnopT;
 
 class GUnop extends OrdCls<GUnopT>{
   public function new(){}

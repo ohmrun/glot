@@ -1,6 +1,6 @@
 package stx.assert.glot.ord;
 
-import eu.ohmrun.glot.lang.expr.GExpr as GExprT;
+import eu.ohmrun.glot.expr.GExpr as GExprT;
 
 class GExpr extends OrdCls<GExprT>{
   public function new(){}

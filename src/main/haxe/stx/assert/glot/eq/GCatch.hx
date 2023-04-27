@@ -1,6 +1,6 @@
 package stx.assert.glot.eq;
 
-import eu.ohmrun.glot.lang.expr.GCatch as GCatchT;
+import eu.ohmrun.glot.expr.GCatch as GCatchT;
 
 class GCatch extends stx.assert.eq.term.Base<GCatchT> {
   public function comply(lhs:GCatchT,rhs:GCatchT):Equaled{

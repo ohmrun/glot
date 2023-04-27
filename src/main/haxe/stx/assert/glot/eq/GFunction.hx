@@ -1,6 +1,6 @@
 package stx.assert.glot.eq;
 
-import eu.ohmrun.glot.lang.expr.GFunction as GFunctionT;
+import eu.ohmrun.glot.expr.GFunction as GFunctionT;
 
 class GFunction extends stx.assert.eq.term.Base<GFunctionT> {
   public function comply(lhs:GFunctionT,rhs:GFunctionT){

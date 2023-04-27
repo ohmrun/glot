@@ -1,6 +1,6 @@
 package stx.assert.glot.eq;
 
-import eu.ohmrun.glot.lang.expr.GTypePath as GTypePathT;
+import eu.ohmrun.glot.expr.GTypePath as GTypePathT;
 
 class GTypePath extends stx.assert.eq.term.Base<GTypePathT> {
   public function comply(lhs:GTypePathT,rhs:GTypePathT){

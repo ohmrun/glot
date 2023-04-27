@@ -1,6 +1,6 @@
 package stx.assert.glot.ord;
 
-import eu.ohmrun.glot.lang.expr.GPropAccess as GPropAccessT;
+import eu.ohmrun.glot.expr.GPropAccess as GPropAccessT;
 
 class GPropAccess extends OrdCls<GPropAccessT>{
   public function new(){}

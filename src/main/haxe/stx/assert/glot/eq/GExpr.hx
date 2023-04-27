@@ -1,6 +1,6 @@
 package stx.assert.glot.eq;
 
-import eu.ohmrun.glot.lang.expr.GExpr as GExprT;
+import eu.ohmrun.glot.expr.GExpr as GExprT;
 
 class GExpr extends stx.assert.eq.term.Base<GExprT> {
   public function comply(lhs:GExprT,rhs:GExprT):Equaled{

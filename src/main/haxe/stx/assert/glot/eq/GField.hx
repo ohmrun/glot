@@ -1,6 +1,6 @@
 package stx.assert.glot.eq;
 
-import eu.ohmrun.glot.lang.expr.GField as GFieldT;
+import eu.ohmrun.glot.expr.GField as GFieldT;
 
 class GField extends stx.assert.eq.term.Base<GFieldT> {
   public function comply(lhs:GFieldT,rhs:GFieldT){

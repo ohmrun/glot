@@ -1,6 +1,6 @@
 package stx.assert.glot.eq;
 
-import eu.ohmrun.glot.lang.expr.GConstant as GConstantT;
+import eu.ohmrun.glot.expr.GConstant as GConstantT;
 
 class GConstant extends stx.assert.eq.term.Base<GConstantT> {
   public function comply(lhs:GConstantT,rhs:GConstantT){

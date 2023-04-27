@@ -1,6 +1,6 @@
 package stx.assert.glot.eq;
 
-import eu.ohmrun.glot.lang.expr.GVar as GVarT;
+import eu.ohmrun.glot.expr.GVar as GVarT;
 
 class GVar extends stx.assert.eq.term.Base<GVarT> {
   public function comply(lhs:GVarT,rhs:GVarT){

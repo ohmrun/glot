@@ -1,6 +1,6 @@
 package stx.assert.glot.ord;
 
-import eu.ohmrun.glot.lang.expr.GVar as GVarT;
+import eu.ohmrun.glot.expr.GVar as GVarT;
 
 class GVar extends OrdCls<GVarT>{
   public function new(){}

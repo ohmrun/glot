@@ -1,6 +1,6 @@
 package stx.assert.glot.ord;
 
-import eu.ohmrun.glot.lang.expr.GFunctionKind as GFunctionKindT;
+import eu.ohmrun.glot.expr.GFunctionKind as GFunctionKindT;
 
 class GFunctionKind extends OrdCls<GFunctionKindT>{
   public function new(){}

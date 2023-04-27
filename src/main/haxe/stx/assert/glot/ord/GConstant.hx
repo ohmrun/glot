@@ -1,6 +1,6 @@
 package stx.assert.glot.ord;
 
-import eu.ohmrun.glot.lang.expr.GConstant as GConstantT;
+import eu.ohmrun.glot.expr.GConstant as GConstantT;
 
 class GConstant extends OrdCls<GConstantT>{
   public function new(){}

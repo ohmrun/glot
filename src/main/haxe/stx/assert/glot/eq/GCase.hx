@@ -1,6 +1,6 @@
 package stx.assert.glot.eq;
 
-import eu.ohmrun.glot.lang.expr.GCase as GCaseT;
+import eu.ohmrun.glot.expr.GCase as GCaseT;
 
 class GCase extends stx.assert.eq.term.Base<GCaseT> {
   public function comply(lhs:GCaseT,rhs:GCaseT){

@@ -1,6 +1,6 @@
 package stx.assert.glot.ord;
 
-import eu.ohmrun.glot.lang.expr.GObjectField as GObjectFieldT;
+import eu.ohmrun.glot.expr.GObjectField as GObjectFieldT;
 
 class GObjectField extends OrdCls<GObjectFieldT>{
   public function new(){}

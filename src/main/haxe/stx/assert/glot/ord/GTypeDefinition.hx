@@ -1,6 +1,6 @@
 package stx.assert.glot.ord;
 
-import eu.ohmrun.glot.lang.expr.GTypeDefinition as GTypeDefinitionT;
+import eu.ohmrun.glot.expr.GTypeDefinition as GTypeDefinitionT;
 
 class GTypeDefinition extends OrdCls<GTypeDefinitionT> {
   public function new(){}

@@ -1,6 +1,6 @@
 package stx.assert.glot.ord;
 
-import eu.ohmrun.glot.lang.expr.GFunctionArg as GFunctionArgT;
+import eu.ohmrun.glot.expr.GFunctionArg as GFunctionArgT;
 
 class GFunctionArg extends OrdCls<GFunctionArgT>{
   public function new(){}

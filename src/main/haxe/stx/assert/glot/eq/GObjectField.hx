@@ -1,6 +1,6 @@
 package stx.assert.glot.eq;
 
-import eu.ohmrun.glot.lang.expr.GObjectField as GObjectFieldT;
+import eu.ohmrun.glot.expr.GObjectField as GObjectFieldT;
 
 class GObjectField extends stx.assert.eq.term.Base<GObjectFieldT> {
   public function comply(lhs:GObjectFieldT,rhs:GObjectFieldT){

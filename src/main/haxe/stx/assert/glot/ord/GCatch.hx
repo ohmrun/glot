@@ -1,6 +1,6 @@
 package stx.assert.glot.ord;
 
-import eu.ohmrun.glot.lang.expr.GCatch as GCatchT;
+import eu.ohmrun.glot.expr.GCatch as GCatchT;
 
 class GCatch extends OrdCls<GCatchT>{
   public function new(){}

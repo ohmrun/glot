@@ -1,6 +1,6 @@
 package stx.assert.glot.ord;
 
-import eu.ohmrun.glot.lang.expr.GTypePath as GTypePathT;
+import eu.ohmrun.glot.expr.GTypePath as GTypePathT;
 
 class GTypePath extends OrdCls<GTypePathT>{
   public function new(){}

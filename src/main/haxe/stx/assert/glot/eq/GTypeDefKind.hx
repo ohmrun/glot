@@ -1,6 +1,6 @@
 package stx.assert.glot.eq;
 
-import eu.ohmrun.glot.lang.expr.GTypeDefKind as GTypeDefKindT;
+import eu.ohmrun.glot.expr.GTypeDefKind as GTypeDefKindT;
 
 class GTypeDefKind extends stx.assert.eq.term.Base<GTypeDefKindT> {
   public function comply(lhs:GTypeDefKindT,rhs:GTypeDefKindT){

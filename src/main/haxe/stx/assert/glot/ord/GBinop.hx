@@ -1,6 +1,6 @@
 package stx.assert.glot.ord;
 
-import eu.ohmrun.glot.lang.expr.GBinop as GBinopT;
+import eu.ohmrun.glot.expr.GBinop as GBinopT;
 
 class GBinop extends OrdCls<GBinopT>{
   public function new(){}

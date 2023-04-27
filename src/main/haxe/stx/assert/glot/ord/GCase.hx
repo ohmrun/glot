@@ -1,6 +1,6 @@
 package stx.assert.glot.ord;
 
-import eu.ohmrun.glot.lang.expr.GCase as GCaseT;
+import eu.ohmrun.glot.expr.GCase as GCaseT;
 
 class GCase extends OrdCls<GCaseT>{
   public function new(){}
