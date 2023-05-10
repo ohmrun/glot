@@ -4,12 +4,21 @@
     "-cp" : "src/main/haxe",
     "unit" : {
       "--macro" : [
+        "include('eu.ohmrun.Glot',true)",
         "include('eu.ohmrun.glot',true)",
         "include('stx.assert.glot',true)"
-      ]
+      ],
+      "interp" : {
+        "--interp" : true
+      }
     },
     "test" : {
-
+      "-cp"     : ["src/test/haxe"],
+      "-lib"    : ["stx_test"],
+      "-main"   : "eu.ohmrun.glot.Test",
+      "interp"  : {
+        "--interp" : true
+      }
     }
   }
 }
