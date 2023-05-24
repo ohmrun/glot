@@ -1,13 +1,20 @@
 package eu.ohmrun.glot.expr;
 
+class GMetadataCtr extends Clazz{
+  public function Make(meta:CTR<GMetadataEntryCtr,Array<GMetadataEntry>>){
+    return GMetadata.lift(meta.apply(new GMetadataEntryCtr()));
+  }
+}
+typedef GMetadataDef = Cluster<GMetadataEntry>;
+
 @:using(eu.ohmrun.glot.expr.GMetadata.GMetadataLift)
-@:forward abstract GMetadata(Cluster<GMetadataEntry>) from Cluster<GMetadataEntry> to Cluster<GMetadataEntry>{
+@:forward abstract GMetadata(GMetadataDef) from GMetadataDef to GMetadataDef{
   public function new(self) this = self;
-  @:noUsing static public function lift(self:Cluster<GMetadataEntry>):GMetadata return new GMetadata(self);
+  @:noUsing static public function lift(self:GMetadataDef):GMetadata return new GMetadata(self);
   static public function unit(){
     return lift(Cluster.unit());
   }
-  public function prj():Cluster<GMetadataEntry> return this;
+  public function prj():GMetadataDef return this;
   private var self(get,never):GMetadata;
   private function get_self():GMetadata return lift(this);
 

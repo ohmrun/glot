@@ -1,27 +1,23 @@
 package eu.ohmrun.glot.expr;
 
+final Expr = __.glot().Expr;
+
 class GFieldTypeCtr extends Clazz{
-  static public function unit(){
-    return new GFieldTypeCtr();
-  }
-  private function lift(self:GFieldTypeSum):GFieldType{
-    return GFieldType.lift(self);
-  }
   public function Var(?t:CTR<GComplexTypeCtr,GComplexType>, ?e:CTR<GExprCtr,GExpr>){
-    return lift(
+    return GFieldType.lift(
       GFVar(
-        __.option(t).map(f -> f(GComplexTypeCtr.unit())).defv(null),
-        __.option(e).map(f -> f(GExprCtr.unit())).defv(null)
+        __.option(t).map(f -> f(Expr.GComplexType)).defv(null),
+        __.option(e).map(f -> f(Expr.GExpr)).defv(null)
       )
     );
   }
   public function Fun(f:CTR<GFunctionCtr,GFunction>){
-    return lift(GFFun(f(GFunctionCtr.unit())));
+    return GFieldType.lift(GFFun(f(Expr.GFunction)));
   }
   public function Prop(get:CTR<GPropAccessCtr,GPropAccess>,set:CTR<GPropAccessCtr,GPropAccess>,?t:CTR<GComplexTypeCtr,GComplexType>,?e:CTR<GExprCtr,GExpr>){
-    return lift(GFProp(get(GPropAccess.__),set(GPropAccess.__),
-      __.option(t).map(f -> f(GComplexType.__)).defv(null),
-      __.option(e).map(f -> f(GExpr.__)).defv(null)
+    return GFieldType.lift(GFProp(get(Expr.GPropAccess),set(Expr.GPropAccess),
+      __.option(t).map(f -> f(Expr.GComplexType)).defv(null),
+      __.option(e).map(f -> f(Expr.GExpr)).defv(null)
     ));
   }
 }
@@ -38,7 +34,7 @@ abstract GFieldType(GFieldTypeSum) from GFieldTypeSum to GFieldTypeSum{
 
   public function prj():GFieldTypeSum return this;
   private var self(get,never):GFieldType;
-  private function get_self():GFieldType return lift(this);
+  private function get_self():GFieldType return GFieldType.lift(this);
 
   // public function toSource():GSource{
 	// 	return Printer.ZERO.printFieldType(this);

@@ -1,19 +1,14 @@
 package eu.ohmrun.glot.expr;
 
+final Expr = __.glot().Expr;
 
 class GVarCtr extends Clazz{
-	static public function unit(){
-		return new GVarCtr();
-	}
-	private function lift(self:GVarDef):GVar{
-		return GVar.lift(self);
-	}
 	public function Make(name:String,?type:CTR<GComplexTypeCtr,GComplexType>,?expr:CTR<GExprCtr,GExpr>,?meta:CTR<GMetadataEntryCtr,GMetadata>,?isFinal,?isStatic){
 		return GVar.make(
 			name,
-			__.option(type).map(f -> f(GComplexType.__)).defv(null),
-			__.option(expr).map(f -> f(GExpr.__)).defv(null),
-			__.option(meta).map(f -> f(GMetadataEntry.__)).defv(null),
+			__.option(type).map(f -> f(Expr.GComplexType)).defv(null),
+			__.option(expr).map(f -> f(Expr.GExpr)).defv(null),
+			__.option(meta).map(f -> f(Expr.GMetadataEntry)).defv(null),
 			isFinal,
 			isStatic
 		);

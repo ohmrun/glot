@@ -11,102 +11,111 @@ class Lang{
 typedef GlotFailure         = stx.fail.GlotFailure;
 typedef GSource             = eu.ohmrun.glot.GSource;
 
+typedef GAccessCtr                  = eu.ohmrun.glot.expr.GAccess.GAccessCtr;
+typedef GAccessSum                  = eu.ohmrun.glot.expr.GAccess.GAccessSum;
+typedef GAccess                     = eu.ohmrun.glot.expr.GAccess;
 
-typedef GAccess             = eu.ohmrun.glot.expr.GAccess;
-typedef GAccessSum          = eu.ohmrun.glot.expr.GAccess.GAccessSum;
-typedef GAccessCtr          = eu.ohmrun.glot.expr.GAccess.GAccessCtr;
+typedef GExprCtr                    = eu.ohmrun.glot.expr.GExpr.GExprCtr;
+typedef GExprSum                    = eu.ohmrun.glot.expr.GExpr.GExprSum;
+typedef GExpr                       = eu.ohmrun.glot.expr.GExpr;
 
-typedef GBinop              = eu.ohmrun.glot.expr.GBinop;
-typedef GBinopSum           = eu.ohmrun.glot.expr.GBinop.GBinopSum;
+typedef GBinopCtr                   = eu.ohmrun.glot.expr.GBinop.GBinopCtr;
+typedef GBinopSum                   = eu.ohmrun.glot.expr.GBinop.GBinopSum;
+typedef GBinop                      = eu.ohmrun.glot.expr.GBinop;
 
-typedef GCase               = eu.ohmrun.glot.expr.GCase;
-typedef GCaseDef            = eu.ohmrun.glot.expr.GCase.GCaseDef;
-typedef GCaseCtr            = eu.ohmrun.glot.expr.GCase.GCaseCtr;
+typedef GCaseCtr                    = eu.ohmrun.glot.expr.GCase.GCaseCtr;
+typedef GCaseDef                    = eu.ohmrun.glot.expr.GCase.GCaseDef;
+typedef GCase                       = eu.ohmrun.glot.expr.GCase;
 
-typedef GCatch              = eu.ohmrun.glot.expr.GCatch;
-typedef GCatchDef           = eu.ohmrun.glot.expr.GCatch.GCatchDef;
-typedef GCatchCtr           = eu.ohmrun.glot.expr.GCatch.GCatchCtr;
+typedef GCatchCtr                   = eu.ohmrun.glot.expr.GCatch.GCatchCtr;
+typedef GCatchDef                   = eu.ohmrun.glot.expr.GCatch.GCatchDef;
+typedef GCatch                      = eu.ohmrun.glot.expr.GCatch;
 
+typedef GComplexTypeCtr             = eu.ohmrun.glot.expr.GComplexType.GComplexTypeCtr;
+typedef GComplexTypeSum             = eu.ohmrun.glot.expr.GComplexType.GComplexTypeSum;
+typedef GComplexType                = eu.ohmrun.glot.expr.GComplexType;
 
-typedef GComplexType        = eu.ohmrun.glot.expr.GComplexType;
-typedef GComplexTypeSum     = eu.ohmrun.glot.expr.GComplexType.GComplexTypeSum;
-typedef GComplexTypeCtr     = eu.ohmrun.glot.expr.GComplexType.GComplexTypeCtr;
+typedef GConstantCtr                = eu.ohmrun.glot.expr.GConstant.GConstantCtr;
+typedef GConstantSum                = eu.ohmrun.glot.expr.GConstant.GConstantSum;
+typedef GConstant                   = eu.ohmrun.glot.expr.GConstant;
 
-typedef GConstant           = eu.ohmrun.glot.expr.GConstant;
-typedef GConstantSum        = eu.ohmrun.glot.expr.GConstant.GConstantSum;
-typedef GConstantCtr        = eu.ohmrun.glot.expr.GConstant.GConstantCtr;
-
-typedef GExpr               = eu.ohmrun.glot.expr.GExpr;
-typedef GExprSum            = eu.ohmrun.glot.expr.GExpr.GExprSum;
-typedef GExprCtr            = eu.ohmrun.glot.expr.GExpr.GExprCtr;
-
-typedef GField              = eu.ohmrun.glot.expr.GField;
-typedef GFieldDef           = eu.ohmrun.glot.expr.GField.GFieldDef;
-typedef GFieldCtr           = eu.ohmrun.glot.expr.GField.GFieldCtr;
-
+typedef GEFieldCtr                  = eu.ohmrun.glot.expr.GEField.GEFieldCtr;
+typedef GEFieldDef                  = eu.ohmrun.glot.expr.GEField.GEFieldDef;
+typedef GEField                     = eu.ohmrun.glot.expr.GEField;
 
 #if (hax_ver > 4.205)
 typedef GEFieldKind          = eu.ohmrun.glot.expr.GEFieldKind;
 #end
 
-typedef GFieldType          = eu.ohmrun.glot.expr.GFieldType;
-typedef GFieldTypeSum       = eu.ohmrun.glot.expr.GFieldType.GFieldTypeSum;
-typedef GFieldTypeCtr       = eu.ohmrun.glot.expr.GFieldType.GFieldTypeCtr;
+typedef GFieldTypeCtr              = eu.ohmrun.glot.expr.GFieldType.GFieldTypeCtr;
+typedef GFieldTypeSum              = eu.ohmrun.glot.expr.GFieldType.GFieldTypeSum;
+typedef GFieldType                 = eu.ohmrun.glot.expr.GFieldType;
 
-typedef GFunction           = eu.ohmrun.glot.expr.GFunction;
-typedef GFunctionDef        = eu.ohmrun.glot.expr.GFunction.GFunctionDef;
-typedef GFunctionCtr        = eu.ohmrun.glot.expr.GFunction.GFunctionCtr;
+typedef GFunctionCtr                = eu.ohmrun.glot.expr.GFunction.GFunctionCtr;
+typedef GFunctionDef                = eu.ohmrun.glot.expr.GFunction.GFunctionDef;
+typedef GFunction                   = eu.ohmrun.glot.expr.GFunction;
 
-typedef GFunctionKind       = eu.ohmrun.glot.expr.GFunctionKind;
+typedef GFunctionArgCtr             = eu.ohmrun.glot.expr.GFunctionArg.GFunctionArgCtr;
+typedef GFunctionArgDef             = eu.ohmrun.glot.expr.GFunctionArg.GFunctionArgDef;
+typedef GFunctionArg                = eu.ohmrun.glot.expr.GFunctionArg;
 
-typedef GFunctionArg        = eu.ohmrun.glot.expr.GFunctionArg;
-typedef GFunctionArgDef     = eu.ohmrun.glot.expr.GFunctionArg.GFunctionArgDef;
-typedef GFunctionArgCtr     = eu.ohmrun.glot.expr.GFunctionArg.GFunctionArgCtr;
+typedef GFunctionKindCtr            = eu.ohmrun.glot.expr.GFunctionKind.GFunctionKindCtr;
+typedef GFunctionKindSum            = eu.ohmrun.glot.expr.GFunctionKind.GFunctionKindSum;
+typedef GFunctionKind               = eu.ohmrun.glot.expr.GFunctionKind;
 
-typedef GMetadata           = eu.ohmrun.glot.expr.GMetadata;
+typedef GMetadataCtr                = eu.ohmrun.glot.expr.GMetadata.GMetadataCtr;
+typedef GMetadataDef                = eu.ohmrun.glot.expr.GMetadata.GMetadataDef;
+typedef GMetadata                   = eu.ohmrun.glot.expr.GMetadata;
 
-typedef GMetadataEntry      = eu.ohmrun.glot.expr.GMetadataEntry;
-typedef GMetadataEntryDef   = eu.ohmrun.glot.expr.GMetadataEntry.GMetadataEntryDef;
-typedef GMetadataEntryCtr   = eu.ohmrun.glot.expr.GMetadataEntry.GMetadataEntryCtr;
+typedef GMetadataEntryCtr           = eu.ohmrun.glot.expr.GMetadataEntry.GMetadataEntryCtr;
+typedef GMetadataEntryDef           = eu.ohmrun.glot.expr.GMetadataEntry.GMetadataEntryDef;
+typedef GMetadataEntry              = eu.ohmrun.glot.expr.GMetadataEntry;
 
-typedef GObjectField        = eu.ohmrun.glot.expr.GObjectField;
-typedef GObjectFieldDef     = eu.ohmrun.glot.expr.GObjectField.GObjectFieldDef;
-typedef GObjectFieldCtr     = eu.ohmrun.glot.expr.GObjectField.GObjectFieldCtr;
+typedef GObjectFieldCtr             = eu.ohmrun.glot.expr.GObjectField.GObjectFieldCtr;
+typedef GObjectFieldDef             = eu.ohmrun.glot.expr.GObjectField.GObjectFieldDef;
+typedef GObjectField                = eu.ohmrun.glot.expr.GObjectField;
 
-typedef GPropAccess         = eu.ohmrun.glot.expr.GPropAccess;
-typedef GPropAccessSum      = eu.ohmrun.glot.expr.GPropAccess.GPropAccessSum;
-typedef GPropAccessCtr      = eu.ohmrun.glot.expr.GPropAccess.GPropAccessCtr;
+typedef GPropAccessCtr              = eu.ohmrun.glot.expr.GPropAccess.GPropAccessCtr;
+typedef GPropAccessSum              = eu.ohmrun.glot.expr.GPropAccess.GPropAccessSum;
+typedef GPropAccess                 = eu.ohmrun.glot.expr.GPropAccess;
 
-typedef GQuoteStatus        = eu.ohmrun.glot.expr.GQuoteStatus;
+typedef GQuoteStatusCtr             = eu.ohmrun.glot.expr.GQuoteStatus.GQuoteStatusCtr;
+typedef GQuoteStatusSum             = eu.ohmrun.glot.expr.GQuoteStatus.GQuoteStatusSum;
+typedef GQuoteStatus                = eu.ohmrun.glot.expr.GQuoteStatus;
 
-typedef GStringLiteralKind  = eu.ohmrun.glot.expr.GStringLiteralKind;
+typedef GStringLiteralKindCtr       = eu.ohmrun.glot.expr.GStringLiteralKind.GStringLiteralKindCtr;
+typedef GStringLiteralKindSum       = eu.ohmrun.glot.expr.GStringLiteralKind.GStringLiteralKindSum;
+typedef GStringLiteralKind          = eu.ohmrun.glot.expr.GStringLiteralKind;
 
-typedef GTypeDefinition     = eu.ohmrun.glot.expr.GTypeDefinition;
-typedef GTypeDefinitionDef  = eu.ohmrun.glot.expr.GTypeDefinition.GTypeDefinitionDef;
-typedef GTypeDefinitionCtr  = eu.ohmrun.glot.expr.GTypeDefinition.GTypeDefinitionCtr;
+typedef GTypeDefinitionCtr          = eu.ohmrun.glot.expr.GTypeDefinition.GTypeDefinitionCtr;
+typedef GTypeDefinitionDef          = eu.ohmrun.glot.expr.GTypeDefinition.GTypeDefinitionDef;
+typedef GTypeDefinition             = eu.ohmrun.glot.expr.GTypeDefinition;
 
-typedef GTypeDefKind        = eu.ohmrun.glot.expr.GTypeDefKind;
-typedef GTypeDefKindSum     = eu.ohmrun.glot.expr.GTypeDefKind.GTypeDefKindSum;
-typedef GTypeDefKindCtr     = eu.ohmrun.glot.expr.GTypeDefKind.GTypeDefKindCtr;
+typedef GTypeDefKindCtr             = eu.ohmrun.glot.expr.GTypeDefKind.GTypeDefKindCtr;
+typedef GTypeDefKindSum             = eu.ohmrun.glot.expr.GTypeDefKind.GTypeDefKindSum;
+typedef GTypeDefKind                = eu.ohmrun.glot.expr.GTypeDefKind;
 
-typedef GTypeParam          = eu.ohmrun.glot.expr.GTypeParam;
-typedef GTypeParamSum       = eu.ohmrun.glot.expr.GTypeParam.GTypeParamSum;
-typedef GTypeParamCtr       = eu.ohmrun.glot.expr.GTypeParam.GTypeParamCtr;
+typedef GTypeParamCtr               = eu.ohmrun.glot.expr.GTypeParam.GTypeParamCtr;
+typedef GTypeParamSum               = eu.ohmrun.glot.expr.GTypeParam.GTypeParamSum;
+typedef GTypeParam                  = eu.ohmrun.glot.expr.GTypeParam;
 
-typedef GTypeParamDecl      = eu.ohmrun.glot.expr.GTypeParamDecl;
-typedef GTypeParamDeclDef   = eu.ohmrun.glot.expr.GTypeParamDecl.GTypeParamDeclDef;
-typedef GTypeParamDeclCtr   = eu.ohmrun.glot.expr.GTypeParamDecl.GTypeParamDeclCtr;
+typedef GTypeParamDeclCtr           = eu.ohmrun.glot.expr.GTypeParamDecl.GTypeParamDeclCtr;
+typedef GTypeParamDeclDef           = eu.ohmrun.glot.expr.GTypeParamDecl.GTypeParamDeclDef;
+typedef GTypeParamDecl              = eu.ohmrun.glot.expr.GTypeParamDecl;
 
-typedef GTypePath           = eu.ohmrun.glot.expr.GTypePath;
-typedef GTypePathDef        = eu.ohmrun.glot.expr.GTypePath.GTypePathDef;
-typedef GTypePathCtr        = eu.ohmrun.glot.expr.GTypePath.GTypePathCtr;
+typedef GTypePathCtr                = eu.ohmrun.glot.expr.GTypePath.GTypePathCtr;
+typedef GTypePathDef                = eu.ohmrun.glot.expr.GTypePath.GTypePathDef;
+typedef GTypePath                   = eu.ohmrun.glot.expr.GTypePath;
 
-typedef GUnop               = eu.ohmrun.glot.expr.GUnop;
-typedef GUnopSum            = eu.ohmrun.glot.expr.GUnop.GUnopSum;
+typedef GUnopCtr                    = eu.ohmrun.glot.expr.GUnop.GUnopCtr;
+typedef GUnopSum                    = eu.ohmrun.glot.expr.GUnop.GUnopSum;
+typedef GUnop                       = eu.ohmrun.glot.expr.GUnop;
 
-typedef GVar                = eu.ohmrun.glot.expr.GVar;
-typedef GVarDef             = eu.ohmrun.glot.expr.GVar.GVarDef;
-typedef GVarCtr             = eu.ohmrun.glot.expr.GVar.GVarCtr;
+typedef GVarCtr                     = eu.ohmrun.glot.expr.GVar.GVarCtr;
+typedef GVarDef                     = eu.ohmrun.glot.expr.GVar.GVarDef;
+typedef GVar                        = eu.ohmrun.glot.expr.GVar;
+
+
 
 // class LiftPrimitiveToExpr(self:Primitive):GExpr{
 //   final cons = GConstant.__;
@@ -163,7 +172,7 @@ typedef GVarCtr             = eu.ohmrun.glot.expr.GVar.GVarCtr;
 //   var isAbstract:Bool;
 //   var params:Array<GTypeParameter>;
 //   var meta:GMetaAccess;
-//   var kind:GFieldKind;
+//   var kind:GEFieldKind;
 //   var doc:Null<String>;
 //   var overloads:GRef<Array<GClassField>>;
 // }

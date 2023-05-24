@@ -1,0 +1,11 @@
+-cp src/main/haxe
+--macro include('eu.ohmrun.Glot',true)
+--macro include('eu.ohmrun.glot',true)
+--macro include('stx.assert.glot',true)
+-L stx_pico
+-L stx_nano
+-L stx_ds
+
+-----------------------
+
+Build completed with 0 successes and 0 failures.

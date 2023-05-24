@@ -1,10 +1,29 @@
 package eu.ohmrun.glot.expr;
 
+class GFunctionKindCtr extends Clazz{
+	public function Anonymous(){
+		return GFunctionKind.lift(GFAnonymous);
+	}
+	public function Named(name:String,?inlined:Bool){
+		return GFunctionKind.lift(GFNamed(name,inlined));
+	}
+	public function Arrow(){
+		return GFunctionKind.lift(GFArrow);
+	}
+}
 @:using(eu.ohmrun.glot.expr.GFunctionKind.GFunctionKindLift)
-enum GFunctionKind{
+enum GFunctionKindSum{
 	GFAnonymous;
 	GFNamed(name:String, ?inlined:Bool);
 	GFArrow;
+}
+abstract GFunctionKind(GFunctionKindSum) from GFunctionKindSum to GFunctionKindSum{
+	public function new(self) this = self;
+	@:noUsing static public function lift(self:GFunctionKindSum):GFunctionKind return new GFunctionKind(self);
+
+	public function prj():GFunctionKindSum return this;
+	private var self(get,never):GFunctionKind;
+	private function get_self():GFunctionKind return lift(this);
 }
 class GFunctionKindLift{
 	#if macro

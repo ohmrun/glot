@@ -1,14 +1,10 @@
 package eu.ohmrun.glot.expr;
 
+final Expr = __.glot().Expr;
+
 class GCaseCtr extends Clazz{
-  static public function unit(){
-    return new GCaseCtr();
-  }
-  private function lift(self:GCaseDef):GCase{
-    return GCase.lift(self);
-  }
   public function Make(values:CTR<GExprCtr,Cluster<GExpr>>,?guard:CTR<GExprCtr,GExpr>,?expr:CTR<GExprCtr,GExpr>){
-    final ctr = GExprCtr.unit();
+    final ctr = Expr.GExpr;
     return GCase.make(
       values(ctr),
       __.option(guard).map(f -> f(ctr)).defv(null),

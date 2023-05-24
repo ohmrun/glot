@@ -1,18 +1,14 @@
 package eu.ohmrun.glot.expr;
 
+final Expr = __.glot().Expr;
+
 class GFunctionCtr extends Clazz{
-  static public function unit(){
-    return new GFunctionCtr();
-  }
-  private function lift(self:GFunctionDef):GFunction{
-    return GFunction.lift(self);
-  }
   public function Make(args:CTR<GFunctionArgCtr,Cluster<GFunctionArg>>,?ret:CTR<GComplexTypeCtr,GComplexType>,?expr:CTR<GExprCtr,GExpr>,?params:CTR<GTypeParamDeclCtr,Cluster<GTypeParamDecl>>){
     return GFunction.make(
-      args(GFunctionArgCtr.unit()),
-    __.option(ret).map(f -> f(GComplexTypeCtr.unit())).defv(null),
-      __.option(expr).map(f -> f(GExprCtr.unit())).defv(null),
-      __.option(params).map(f -> f(GTypeParamDeclCtr.unit())).defv(null)
+      args(Expr.GFunctionArg),
+      __.option(ret).map(f -> f(Expr.GComplexType)).defv(null),
+      __.option(expr).map(f -> f(Expr.GExpr)).defv(null),
+      __.option(params).map(f -> f(Expr.GTypeParamDecl)).defv(null)
     );
   }
   // public function thunk(expr:GExpr){

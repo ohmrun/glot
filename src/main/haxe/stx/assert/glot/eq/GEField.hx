@@ -1,9 +1,9 @@
 package stx.assert.glot.eq;
 
-import eu.ohmrun.glot.expr.GField as GFieldT;
+import eu.ohmrun.glot.expr.GEField as GEFieldT;
 
-class GField extends stx.assert.eq.term.Base<GFieldT> {
-  public function comply(lhs:GFieldT,rhs:GFieldT){
+class GEField extends stx.assert.eq.term.Base<GEFieldT> {
+  public function comply(lhs:GEFieldT,rhs:GEFieldT){
     var eq = Eq.String().comply(lhs.name,rhs.name);
     if(eq.is_ok()){
       eq = new GFieldType().comply(lhs.kind,rhs.kind);

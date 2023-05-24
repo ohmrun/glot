@@ -1,34 +1,32 @@
 package eu.ohmrun.glot.expr;
 
 @:using(eu.ohmrun.glot.expr.GPropAccess.GPropAccessLift)
-enum GPropAccessSum{
-  GPAccFn;
-  GPAccDefault;
-  GPAccNull;
-  GPAccNever;
+enum abstract GPropAccessSum(String) from String{
+  var GPAccFn        = "get";
+  var GPAccDefault   = "default";
+  var GPAccNull      = "null";
+  var GPAccNever     = "never";
+
+  public function toString():String{
+    return this;
+  }
 }
 class GPropAccessCtr extends Clazz{
-  static public function unit(){
-    return new GPropAccessCtr();
-  }
-  private function lift(self:GPropAccessSum):GPropAccess{
-    return GPropAccess.lift(self);
-  }
   public function Fn(){
-    return GPAccFn; 
+    return GPropAccess.lift(GPAccFn); 
   }
   public function Default(){
-    return GPAccDefault; 
+    return GPropAccess.lift(GPAccDefault); 
   }
   public function Null(){
-    return GPAccNull; 
+    return GPropAccess.lift(GPAccNull); 
   }
   public function Never(){
-    return GPAccNever; 
+    return GPropAccess.lift(GPAccNever); 
   }
 }
 @:using(eu.ohmrun.glot.expr.GPropAccess.GPropAccessLift)
-abstract GPropAccess(GPropAccessSum) from GPropAccessSum to GPropAccessSum{
+@:forward abstract GPropAccess(GPropAccessSum) from GPropAccessSum to GPropAccessSum{
   static public var __(default,never) = new GPropAccessCtr();
   public function new(self) this = self;
   @:noUsing static public function lift(self:GPropAccessSum):GPropAccess return new GPropAccess(self);
@@ -40,18 +38,20 @@ abstract GPropAccess(GPropAccessSum) from GPropAccessSum to GPropAccessSum{
 class GPropAccessLift{
   static public function getting(self:GPropAccess){
     return switch(self){
-      case GPAccFn       : 'get';
-      case GPAccDefault  : 'default';
-      case GPAccNull     : 'null';
-      case GPAccNever    : 'never';
+      case GPAccFn        : 'get';
+      case GPAccDefault   : 'default';
+      case GPAccNull      : 'null';
+      case GPAccNever     : 'never';
+      default             : throw 'unsupported HPropAcess "#${self}"';
     }
   }
   static public function setting(self:GPropAccess){
     return switch(self){
-      case GPAccFn       : 'set';
-      case GPAccDefault  : 'default';
-      case GPAccNull     : 'null';
-      case GPAccNever    : 'never';
+      case GPAccFn        : 'set';
+      case GPAccDefault   : 'default';
+      case GPAccNull      : 'null';
+      case GPAccNever     : 'never';
+      default             : throw 'unsupported HPropAcess "#${self}"';
     }
   }
 }

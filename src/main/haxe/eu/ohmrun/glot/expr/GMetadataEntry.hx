@@ -1,16 +1,10 @@
 package eu.ohmrun.glot.expr;
 
 class GMetadataEntryCtr extends Clazz{
-  static public function unit(){
-    return new GMetadataEntryCtr();
-  }
-  private function lift(self:GMetadataEntryDef):GMetadataEntry{
-    return GMetadataEntry.lift(self);
-  }
   public function Make(name:String,?params:CTR<GExprCtr,Cluster<GExpr>>){
-    return lift({
+    return GMetadataEntry.lift({
       name    : name,
-      params  : __.option(params).map(f -> f(GExprCtr.unit())).defv([])
+      params  : __.option(params).map(f -> f(__.glot().Expr.GExpr)).defv([])
     });
   }
 }

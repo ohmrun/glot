@@ -1,10 +1,10 @@
 package stx.assert.glot.ord;
 
-import eu.ohmrun.glot.expr.GField as GFieldT;
+import eu.ohmrun.glot.expr.GEField as GEFieldT;
 
-class GField extends OrdCls<GFieldT>{
+class GEField extends OrdCls<GEFieldT>{
   public function new(){}
-  public function comply(lhs:GFieldT,rhs:GFieldT){
+  public function comply(lhs:GEFieldT,rhs:GEFieldT){
     var ord = Ord.String().comply(lhs.name,rhs.name);
     if(ord.is_not_less_than()){
       ord = new GFieldType().comply(lhs.kind,rhs.kind);

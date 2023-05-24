@@ -1,34 +1,30 @@
 package eu.ohmrun.glot.expr;
 
-class GFieldCtr extends Clazz{
-  static public function unit(){
-    return new GFieldCtr();
-  }
-  private function lift(self:GFieldDef):GField{
-    return GField.lift(self);
-  }
+final Expr = __.glot().Expr;
+
+class GEFieldCtr extends Clazz{
   public function Make(name:String,kind:CTR<GFieldTypeCtr,GFieldType>,?access:CTR<GAccessCtr,Cluster<GAccess>>,?meta:CTR<GMetadataEntryCtr,GMetadata>,?doc){
-    return GField.make(
+    return eu.ohmrun.glot.expr.GEField.make(
       name,
-      kind(GFieldType.__),
-      __.option(access).map(f -> f(GAccess.__)).defv(null),
-      __.option(meta).map(f -> f(GMetadataEntry.__)).defv(null),
+      kind(Expr.GFieldType),
+      __.option(access).map(f -> f(Expr.GAccess)).defv(null),
+      __.option(meta).map(f -> f(Expr.GMetadataEntry)).defv(null),
       doc
     );
   }
 }
-typedef GFieldDef = {
+typedef GEFieldDef = {
 	final name     : String;
   final kind     : GFieldType;
 	final ?access  : Cluster<GAccess>;
 	final ?meta    : GMetadata;
   final ?doc     : Null<String>;
 }
-@:using(eu.ohmrun.glot.expr.GField.GFieldLift)
-@:forward abstract GField(GFieldDef) from GFieldDef to GFieldDef{
-  static public var __(default,never) = new GFieldCtr();
+@:using(eu.ohmrun.glot.expr.GEField.GEFieldLift)
+@:forward abstract GEField(GEFieldDef) from GEFieldDef to GEFieldDef{
+  static public var __(default,never) = new GEFieldCtr();
   public function new(self) this = self;
-  @:noUsing static public function lift(self:GFieldDef):GField return new GField(self);
+  @:noUsing static public function lift(self:GEFieldDef):GEField return new GEField(self);
   @:noUsing static public function make(name:String,kind:GFieldType,?access,?meta,?doc){
     return lift({
       name    : name,
@@ -38,17 +34,17 @@ typedef GFieldDef = {
       doc     : doc
     });
   }
-  public function prj():GFieldDef return this;
-  private var self(get,never):GField;
-  private function get_self():GField return lift(this);
+  public function prj():GEFieldDef return this;
+  private var self(get,never):GEField;
+  private function get_self():GEField return lift(this);
 
   public function toSource():GSource{
 		return Printer.ZERO.printField(this);
 	}
 }
-class GFieldLift{
+class GEFieldLift{
   #if macro
-  static public function to_macro_at(self:GField,pos:Position):Field{
+  static public function to_macro_at(self:GEField,pos:Position):Field{
     return @:privateAccess {
       name      : self.name,
       kind      : self.kind.to_macro_at(pos),
