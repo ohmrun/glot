@@ -40,6 +40,15 @@ abstract GConstant(GConstantSum) from GConstantSum to GConstantSum{
   public function toGExpr(){
     return Wildcard.__.glot().Expr.GExpr.Constant(this);
   }
+  public function canonical():String{
+    return switch(this){
+      case GCInt(v,_)       : v;
+	    case GCFloat(f,_)     : f;
+	    case GCString(s,_)    : s;
+	    case GCIdent(s)       : s;
+	    case GCRegexp(r, opt) : '~/$r/$opt';
+    }
+  }
 }
 class GConstantLift{
   #if macro

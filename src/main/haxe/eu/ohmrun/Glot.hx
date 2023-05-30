@@ -1,11 +1,14 @@
 package eu.ohmrun;
 
-using eu.ohmrun.Glot;
-
 import haxe.macro.Expr;
+
+import stx.fail.OMFailure;
 
 using stx.Nano;
 using stx.Log;
+using stx.om.Spine;
+
+using eu.ohmrun.Glot;
 
 class Lang{
   static public function glot(wildcard:Wildcard){
@@ -122,7 +125,7 @@ typedef GVar                        = eu.ohmrun.glot.expr.GVar;
 
 class LiftAccessToGlot{
   #if macro
-  static public function fromMacro(self:Access):GAccess{
+  static public function toGlot(self:Access):GAccess{
 		return switch(self){
 			case APrivate 			: GAPrivate;
 			case APublic 				: GAPublic;
@@ -141,7 +144,7 @@ class LiftAccessToGlot{
 }
 class LiftBinopToGlot{
   #if macro
-  static public function fromMacro(self:Binop):GBinop{
+  static public function toGlot(self:Binop):GBinop{
     return switch(self){
       case OpAdd             : GOpAdd;
       case OpMult            : GOpMult;
@@ -163,7 +166,7 @@ class LiftBinopToGlot{
       case OpShr             : GOpShr;
       case OpUShr            : GOpUShr;
       case OpMod             : GOpMod;
-      case OpAssignOp(op)    : GOpAssignOp(fromMacro(op,));
+      case OpAssignOp(op)    : GOpAssignOp(toGlot(op,));
       case OpInterval        : GOpInterval;
       case OpArrow           : GOpArrow;
       case OpIn              : GOpIn;
@@ -176,38 +179,50 @@ class LiftBinopToGlot{
 }
 class LiftCaseToGlot{
   #if macro
-  static public function fromMacro(self:Case):GCase{
+  static public function toGlot(self:Case):GCase{
     return @:privateAccess {
-      values  : __.option(self.values).map(x -> x.map(y -> y.fromMacro())).defv([]),
-      guard   : __.option(self.guard).map(x -> x.fromMacro()).defv(null),
-      expr    : __.option(self.expr).map(x -> x.fromMacro()).defv(null) 
+      values  : __.option(self.values).map(x -> x.map(y -> y.toGlot())).defv([]),
+      guard   : __.option(self.guard).map(x -> x.toGlot()).defv(null),
+      expr    : __.option(self.expr).map(x -> x.toGlot()).defv(null) 
     }
   }
   #end
 }
 class LiftCatchToGlot{
   #if macro
-  static public function fromMacro(self:Catch):GCatch{
+  static public function toGlot(self:Catch):GCatch{
     return {
       name  : self.name,
-      expr  : self.expr.fromMacro(),
-      type  : __.option(self.type).map(x -> x.fromMacro()).defv(null)
+      expr  : self.expr.toGlot(),
+      type  : __.option(self.type).map(x -> x.toGlot()).defv(null)
     };
   }
   #end
 }
+typedef GlotSpine = stx.om.spine.glot.GlotSpine;
+
+class LiftGlotToSpine{
+  static public function toSpine(self:GExpr):Upshot<GlotSpine,OMFailure>{
+    return new stx.om.spine.glot.FromGlot().apply(self);
+  }
+}
+class SpineToGlot{
+  static public function fromSpine(self:Spine):GExpr{
+    return new stx.om.spine.glot.ToGlot().apply(self);
+  }
+}
 class LiftComplextTypeToGlot{
   #if macro
-  static public function fromMacro(self:ComplexType):GComplexType{
+  static public function toGlot(self:ComplexType):GComplexType{
 		return @:privateAccess switch(self){
-			case TPath( p )             : GTPath( p.fromMacro() );
-			case TFunction( args , ret ): GTFunction( args.map(arg -> fromMacro(arg,)) , fromMacro(ret,) );
-			case TAnonymous( fields  )  : GTAnonymous( fields.map(x -> x.fromMacro())  );
-			case TParent( t )           : GTParent( t.fromMacro() );
-			case TExtend( p , fields  ) : GTExtend( p.map(x -> x.fromMacro()) , fields.map(x -> x.fromMacro())  );
-			case TOptional( t )         : GTOptional( t.fromMacro() );
-			case TNamed( n , t )        : GTNamed( n , t.fromMacro() );
-			case TIntersection(tl)      : GTIntersection(tl.map(x -> x.fromMacro()));
+			case TPath( p )             : GTPath( p.toGlot() );
+			case TFunction( args , ret ): GTFunction( args.map(arg -> toGlot(arg,)) , toGlot(ret,) );
+			case TAnonymous( fields  )  : GTAnonymous( fields.map(x -> x.toGlot())  );
+			case TParent( t )           : GTParent( t.toGlot() );
+			case TExtend( p , fields  ) : GTExtend( p.map(x -> x.toGlot()) , fields.map(x -> x.toGlot())  );
+			case TOptional( t )         : GTOptional( t.toGlot() );
+			case TNamed( n , t )        : GTNamed( n , t.toGlot() );
+			case TIntersection(tl)      : GTIntersection(tl.map(x -> x.toGlot()));
 		}		
 	}
   #end
@@ -215,7 +230,7 @@ class LiftComplextTypeToGlot{
 
 class LiftConstantToGlot{
   #if macro
-  static public function fromMacro(self:Constant):GConstant{
+  static public function toGlot(self:Constant):GConstant{
     return switch(self){
       #if (haxe_ver > 4.205) 
       case CInt(v, s)        : GCInt(v, s);       
@@ -224,7 +239,7 @@ class LiftConstantToGlot{
       case CInt(v)           : GCInt(v);
       case CFloat(f)         : GCFloat(f);     
       #end       
-      case CString(s, kind)  : GCString(s, __.option(kind).map(x -> x.fromMacro()).defv(null)); 
+      case CString(s, kind)  : GCString(s, __.option(kind).map(x -> x.toGlot()).defv(null)); 
       case CIdent(s)         : GCIdent(s);        
       case CRegexp(r, opt)   : GCRegexp(r, opt);  
     }
@@ -233,12 +248,12 @@ class LiftConstantToGlot{
 }
 class LiftEFieldToGlot{
   #if macro
-  static public function fromMacro(self:haxe.macro.Expr.Field):GEField{
+  static public function toGlot(self:haxe.macro.Expr.Field):GEField{
     return @:privateAccess {
       name      : self.name,
-      kind      : self.kind.fromMacro(),
-      access    : __.option(self.access).map(x -> x.map(y -> y.fromMacro())).defv([]),
-      meta      : __.option(self.meta).map(x -> x.fromMacro()).defv(null),
+      kind      : self.kind.toGlot(),
+      access    : __.option(self.access).map(x -> x.map(y -> y.toGlot())).defv([]),
+      meta      : __.option(self.meta).map(x -> x.toGlot()).defv(null),
       doc       : self.doc
     }
   }
@@ -246,7 +261,7 @@ class LiftEFieldToGlot{
 }
 class LiftEFieldKindToGlot{
   #if macro
-  static public function fromMacro(self:haxe.macro.Expr.EFieldKind):GEFieldKind{
+  static public function toGlot(self:haxe.macro.Expr.EFieldKind):GEFieldKind{
 		return switch(self){
 			case Normal 	: GNormal;
 			case Safe 		: GSafe;
@@ -256,42 +271,42 @@ class LiftEFieldKindToGlot{
 }
 class LiftExprToGlot{
   #if macro
-  static public function fromMacro(self:haxe.macro.Expr):GExpr{
-    final f = fromMacro;
+  static public function toGlot(self:haxe.macro.Expr):GExpr{
+    final f = toGlot;
     return switch(self.expr){
-      case EConst(c)                     : GEConst(c.fromMacro());
+      case EConst(c)                     : GEConst(c.toGlot());
       case EArray(e1, e2)                : GEArray(f(e1), f(e2));
-      case EBinop(op, e1, e2)            : GEBinop(op.fromMacro(), f(e1), f(e2));
-      case EDisplay(e, _)                : fromMacro(e);
+      case EBinop(op, e1, e2)            : GEBinop(op.toGlot(), f(e1), f(e2));
+      case EDisplay(e, _)                : toGlot(e);
       #if (haxe_ver > 4.205) 
-      case EField(e, field, kind)        : GEField(f(e), field, __.option(kind).map(x -> x.fromMacro()).defv(null));
+      case EField(e, field, kind)        : GEField(f(e), field, __.option(kind).map(x -> x.toGlot()).defv(null));
       #else
       case EField(e, field)              : GEField(f(e), field);
       #end
       case EParenthesis(e)               : GEParenthesis(f(e));
-      case EObjectDecl(fields)           : GEObjectDecl(fields.map(e -> e.fromMacro()));
-      case EArrayDecl(values)            : GEArrayDecl(values.map(e -> e.fromMacro()));
-      case ECall(e, params)              : GECall(f(e), params.map(e -> e.fromMacro()));
-      case ENew(t, params)               : GENew(t.fromMacro(), params.map(e -> e.fromMacro()));
-      case EUnop(op, postFix, e)         : GEUnop(op.fromMacro(), postFix, e.fromMacro());
-      case EVars(vars)                   : GEVars(vars.map(e -> LiftVarToGlot.fromMacro(e)));
-      case EFunction(kind, f)            : GEFunction(__.option(kind).map(x -> x.fromMacro()).defv(null), f.fromMacro());
-      case EBlock(exprs)                 : GEBlock(exprs.map(e -> e.fromMacro()));
-      case EFor(i, eexpr)                : GEFor(i.fromMacro(), eexpr.fromMacro());
-      case EIf(econd, eif, eelse)        : GEIf(econd.fromMacro(), eif.fromMacro(), __.option(eelse).map(x -> x.fromMacro()).defv(null));
-      case EWhile(econd, e, normalWhile) : GEWhile(econd.fromMacro(), e.fromMacro(), normalWhile);
-      case ESwitch(e, cases, edef)       : GESwitch(e.fromMacro(), cases.map(e -> e.fromMacro()), __.option(edef).map(x -> x.fromMacro()).defv(null));
-      case ETry(e, catches)              : GETry(e.fromMacro(), catches.map(e -> e.fromMacro()));
-      case EReturn(e)                    : GEReturn(__.option(e).map(x -> x.fromMacro()).defv(null));
+      case EObjectDecl(fields)           : GEObjectDecl(fields.map(e -> e.toGlot()));
+      case EArrayDecl(values)            : GEArrayDecl(values.map(e -> e.toGlot()));
+      case ECall(e, params)              : GECall(f(e), params.map(e -> e.toGlot()));
+      case ENew(t, params)               : GENew(t.toGlot(), params.map(e -> e.toGlot()));
+      case EUnop(op, postFix, e)         : GEUnop(op.toGlot(), postFix, e.toGlot());
+      case EVars(vars)                   : GEVars(vars.map(e -> LiftVarToGlot.toGlot(e)));
+      case EFunction(kind, f)            : GEFunction(__.option(kind).map(x -> x.toGlot()).defv(null), f.toGlot());
+      case EBlock(exprs)                 : GEBlock(exprs.map(e -> e.toGlot()));
+      case EFor(i, eexpr)                : GEFor(i.toGlot(), eexpr.toGlot());
+      case EIf(econd, eif, eelse)        : GEIf(econd.toGlot(), eif.toGlot(), __.option(eelse).map(x -> x.toGlot()).defv(null));
+      case EWhile(econd, e, normalWhile) : GEWhile(econd.toGlot(), e.toGlot(), normalWhile);
+      case ESwitch(e, cases, edef)       : GESwitch(e.toGlot(), cases.map(e -> e.toGlot()), __.option(edef).map(x -> x.toGlot()).defv(null));
+      case ETry(e, catches)              : GETry(e.toGlot(), catches.map(e -> e.toGlot()));
+      case EReturn(e)                    : GEReturn(__.option(e).map(x -> x.toGlot()).defv(null));
       case EBreak                        : GEBreak;
       case EContinue                     : GEContinue;
-      case EUntyped(e)                   : GEUntyped(e.fromMacro());
-      case EThrow(e)                     : GEThrow(e.fromMacro());
-      case ECast(e, t)                   : GECast(e.fromMacro(), __.option(t).map(x -> x.fromMacro()).defv(null));
-      case ETernary(econd, eif, eelse)   : GETernary(econd.fromMacro(), eif.fromMacro(), eelse.fromMacro());
-      case ECheckType(e, t)              : GECheckType(e.fromMacro(), t.fromMacro());
-      case EMeta(s, e)                   : GEMeta(s.fromMacro(), e.fromMacro());
-      case EIs(e, t)                     : GEIs(e.fromMacro(), t.fromMacro());
+      case EUntyped(e)                   : GEUntyped(e.toGlot());
+      case EThrow(e)                     : GEThrow(e.toGlot());
+      case ECast(e, t)                   : GECast(e.toGlot(), __.option(t).map(x -> x.toGlot()).defv(null));
+      case ETernary(econd, eif, eelse)   : GETernary(econd.toGlot(), eif.toGlot(), eelse.toGlot());
+      case ECheckType(e, t)              : GECheckType(e.toGlot(), t.toGlot());
+      case EMeta(s, e)                   : GEMeta(s.toGlot(), e.toGlot());
+      case EIs(e, t)                     : GEIs(e.toGlot(), t.toGlot());
       case null                           : null;
     }
   }
@@ -299,18 +314,18 @@ class LiftExprToGlot{
 }
 class LiftFieldTypeToGlot{
   #if macro
-  static public function fromMacro(self:FieldType):GFieldType{
+  static public function toGlot(self:FieldType):GFieldType{
     return switch(self){
       case FVar( t  , e)            :  GFVar(
-        __.option(t).map(ct -> ct.fromMacro()).defv(null)  , 
-        __.option(e).map(e -> e.fromMacro()).defv(null))
+        __.option(t).map(ct -> ct.toGlot()).defv(null)  , 
+        __.option(e).map(e -> e.toGlot()).defv(null))
       ;
-      case FFun( f  )               :  GFFun( LiftFunctionToGlot.fromMacro(f)  );
+      case FFun( f  )               :  GFFun( LiftFunctionToGlot.toGlot(f)  );
       case FProp( get , set , t, e) :  GFProp( 
         GPropAccess.fromString(get), 
         GPropAccess.fromString(set), 
-        __.option(t).map(x -> x.fromMacro()).defv(null) , 
-        __.option(e).map(x -> x.fromMacro()).defv(null)
+        __.option(t).map(x -> x.toGlot()).defv(null) , 
+        __.option(e).map(x -> x.toGlot()).defv(null)
       );
     } 
   }
@@ -318,32 +333,32 @@ class LiftFieldTypeToGlot{
 }
 class LiftFunctionToGlot{
   #if macro
-  static public function fromMacro(self:Function):GFunction{
+  static public function toGlot(self:Function):GFunction{
     return @:privateAccess {
-      args    : self.args.map(arg -> arg.fromMacro()),
-      ret     : __.option(self.ret).map(ret -> ret.fromMacro()).defv(null),
-      expr    : __.option(self.expr).map(x -> x.fromMacro()).defv(null),
-      params  : __.option(self.params).map(x -> x.map(y -> y.fromMacro())).defv([])
+      args    : self.args.map(arg -> arg.toGlot()),
+      ret     : __.option(self.ret).map(ret -> ret.toGlot()).defv(null),
+      expr    : __.option(self.expr).map(x -> x.toGlot()).defv(null),
+      params  : __.option(self.params).map(x -> x.map(y -> y.toGlot())).defv([])
     }
   }
   #end 
 }
 class LiftFunctionArgToGlot{
   #if macro
-  static public function fromMacro(self:FunctionArg):GFunctionArg{
+  static public function toGlot(self:FunctionArg):GFunctionArg{
     return {
       name    : self.name,
-      type    : __.option(self.type).map(e -> e.fromMacro()).defv(null),
+      type    : __.option(self.type).map(e -> e.toGlot()).defv(null),
       opt     : self.opt,
-      value   : __.option(self.value).map(e -> e.fromMacro()).defv(null),
-      meta    : __.option(self.meta).map(x -> x.fromMacro()).defv(null)
+      value   : __.option(self.value).map(e -> e.toGlot()).defv(null),
+      meta    : __.option(self.meta).map(x -> x.toGlot()).defv(null)
     }
   }
   #end
 }
 class LiftFunctionKindToGlot{
   #if macro
-  static public function fromMacro(self:FunctionKind):GFunctionKind{
+  static public function toGlot(self:FunctionKind):GFunctionKind{
 		return switch(self){
 			case FAnonymous           :		GFAnonymous;
 			case FNamed(name, inlined):		GFNamed(name, inlined);
@@ -354,35 +369,35 @@ class LiftFunctionKindToGlot{
 }
 class LiftMetadataToGlot{
   #if macro
-  static public function fromMacro(self:Metadata):GMetadata{
-    return @:privateAccess self.map(e -> e.fromMacro());
+  static public function toGlot(self:Metadata):GMetadata{
+    return @:privateAccess self.map(e -> e.toGlot());
   }
   #end
 }
 class LiftMetadataEntryToGlot{
   #if macro
-  static public function fromMacro(self:MetadataEntry):GMetadataEntry{
+  static public function toGlot(self:MetadataEntry):GMetadataEntry{
     return @:privateAccess {
       name    : self.name,
-	    params  : __.option(self.params).map(x -> x.map(y -> y.fromMacro())).defv([])
+	    params  : __.option(self.params).map(x -> x.map(y -> y.toGlot())).defv([])
     };
   }
   #end
 }
 class LiftObjectFieldToGlot{
   #if macro
-  static public function fromMacro(self:ObjectField):GObjectField{
+  static public function toGlot(self:ObjectField):GObjectField{
     return {
       field  : self.field,
-      expr   : self.expr.fromMacro(),
-      quotes : __.option(self.quotes).map(x -> x.fromMacro()).defv(null)
+      expr   : self.expr.toGlot(),
+      quotes : __.option(self.quotes).map(x -> x.toGlot()).defv(null)
     }
   }
   #end
 }
 class LiftQuoteStatusToGlot{
   #if macro 
-  static public function fromMacro(self:QuoteStatus):GQuoteStatus{
+  static public function toGlot(self:QuoteStatus):GQuoteStatus{
 		return switch(self){
 			case Unquoted 	: GUnquoted;
 			case Quoted 		: GQuoted;
@@ -392,7 +407,7 @@ class LiftQuoteStatusToGlot{
 }
 class LiftStringLiteralKindToGlot{
   #if macro
-  static public function fromMacro(self:StringLiteralKind):GStringLiteralKind{
+  static public function toGlot(self:StringLiteralKind):GStringLiteralKind{
 		return switch(self){
 			case DoubleQuotes: GDoubleQuotes;
 			case SingleQuotes: GSingleQuotes;
@@ -402,15 +417,15 @@ class LiftStringLiteralKindToGlot{
 }
 class LiftTypeDefinitionToGlot{
   #if macro
-  static public function fromMacro(self:haxe.macro.Expr.TypeDefinition):GTypeDefinition{
-    __.log().debug('gtypedefinition.fromMacro');
+  static public function toGlot(self:haxe.macro.Expr.TypeDefinition):GTypeDefinition{
+    __.log().debug('gtypedefinition.toGlot');
     return @:privateAccess {
       name        : self.name,
       pack        : self.pack,
-      kind        : self.kind.fromMacro(),
-      fields      : self.fields.map(x -> x.fromMacro()),
-      params      : __.option(self.params).map(x -> x.map(y -> y.fromMacro())).defv([]),
-      meta        : __.option(self.meta).map( x -> x.fromMacro()).defv([]),
+      kind        : self.kind.toGlot(),
+      fields      : self.fields.map(x -> x.toGlot()),
+      params      : __.option(self.params).map(x -> x.map(y -> y.toGlot())).defv([]),
+      meta        : __.option(self.meta).map( x -> x.toGlot()).defv([]),
       isExtern    : self.isExtern,
       doc         : self.doc
     }
@@ -419,51 +434,51 @@ class LiftTypeDefinitionToGlot{
 }
 class LiftTypeDefKindToGlot{
   #if macro
-  static public function fromMacro(self:TypeDefKind):GTypeDefKind{
+  static public function toGlot(self:TypeDefKind):GTypeDefKind{
     return @:privateAccess switch(self){
       case TDEnum               : GTDEnum;
       case TDStructure          : GTDStructure;
       case TDClass( superClass , interfaces , isInterface , isFinal , isAbstract ) : 
         GTDClass(
-          __.option(superClass).map(x -> x.fromMacro()).defv(null),
-          __.option(interfaces).map(x -> x.map(y -> y.fromMacro())).defv([]),
+          __.option(superClass).map(x -> x.toGlot()).defv(null),
+          __.option(interfaces).map(x -> x.map(y -> y.toGlot())).defv([]),
           isInterface,
           isFinal,
           isAbstract
         );
-      case TDAlias( t ) : GTDAlias(t.fromMacro());
+      case TDAlias( t ) : GTDAlias(t.toGlot());
       case TDAbstract( tthis , from , to ) :
           GTDAbstract(
-            __.option(tthis).map(x -> x.fromMacro()).defv(null),
-            __.option(from).map(x -> x.map(y -> y.fromMacro())).defv([]),
-            __.option(to).map(x -> x.map(y -> y.fromMacro())).defv([])
+            __.option(tthis).map(x -> x.toGlot()).defv(null),
+            __.option(from).map(x -> x.map(y -> y.toGlot())).defv([]),
+            __.option(to).map(x -> x.map(y -> y.toGlot())).defv([])
           );
       case TDField(kind, access) : 
-          GTDField(kind.fromMacro(),access.map(x -> x.fromMacro()));
+          GTDField(kind.toGlot(),access.map(x -> x.toGlot()));
     }
   }
   #end
 }
 class LiftTypeParamToGlot{
   #if macro
-  static public function fromMacro(self:TypeParam):GTypeParam{
+  static public function toGlot(self:TypeParam):GTypeParam{
     return switch(self){
-      case TPType( t ) : GTPType(t.fromMacro());
-	    case TPExpr( e ) : GTPExpr(e.fromMacro());
+      case TPType( t ) : GTPType(t.toGlot());
+	    case TPExpr( e ) : GTPExpr(e.toGlot());
     }
   }
   #end
 }
 class GTypeParamDeclToGlot{
   #if macro
-  static public function fromMacro(self:TypeParamDecl):GTypeParamDecl{
+  static public function toGlot(self:TypeParamDecl):GTypeParamDecl{
     return @:privateAccess {
       name        : self.name,
-      constraints : __.option(self.constraints).map(x -> x.map(y -> y.fromMacro())).defv([]),
-      params      : __.option(self.params).map(x -> x.map(y -> y.fromMacro())).defv([]),
-      meta        : __.option(self.meta).map(x -> x.map(y -> y.fromMacro())).defv([]),
+      constraints : __.option(self.constraints).map(x -> x.map(y -> y.toGlot())).defv([]),
+      params      : __.option(self.params).map(x -> x.map(y -> y.toGlot())).defv([]),
+      meta        : __.option(self.meta).map(x -> x.map(y -> y.toGlot())).defv([]),
       #if (haxe_ver > 4.205) 
-      defaultType : __.option(self.defaultType).map(x -> x.fromMacro()).defv(null)
+      defaultType : __.option(self.defaultType).map(x -> x.toGlot()).defv(null)
       #end
     };
   }
@@ -471,11 +486,11 @@ class GTypeParamDeclToGlot{
 }
 class LiftTypePathToGlot{
   #if macro
-  static public function fromMacro(self:TypePath):GTypePath{
+  static public function toGlot(self:TypePath):GTypePath{
     return @:privateAccess {
       name    : self.name,
       pack    : __.option(self.pack).map(x -> x).defv([]),
-      params  : __.option(self.params).map(x -> x.map(y -> y.fromMacro())).defv([]),
+      params  : __.option(self.params).map(x -> x.map(y -> y.toGlot())).defv([]),
       sub     : self.sub
     }
   } 
@@ -483,7 +498,7 @@ class LiftTypePathToGlot{
 }
 class LiftUnopToGLot{
   #if macro
-  static public function fromMacro(self:Unop):GUnop{
+  static public function toGlot(self:Unop):GUnop{
     return switch(self){
       case OpIncrement     : GOpIncrement;
       case OpDecrement     : GOpDecrement;
@@ -497,14 +512,14 @@ class LiftUnopToGLot{
 }
 class LiftVarToGlot{
   #if macro
-  static public function fromMacro(self:Var):GVar{
+  static public function toGlot(self:Var):GVar{
 		return {
 			name 				: self.name,
-			type 				: __.option(self.type).map(x -> x.fromMacro()).defv(null),
-			expr 				: __.option(self.expr).map(x -> x.fromMacro()).defv(null),
+			type 				: __.option(self.type).map(x -> x.toGlot()).defv(null),
+			expr 				: __.option(self.expr).map(x -> x.toGlot()).defv(null),
 			isFinal 		: self.isFinal,
 			isStatic 		: self.isStatic,
-			meta 				: __.option(self.meta).map(x -> x.fromMacro()).defv(null)
+			meta 				: __.option(self.meta).map(x -> x.toGlot()).defv(null)
 		}		
 	}
   #end
