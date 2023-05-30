@@ -1,22 +1,23 @@
 {
-    "name": "glot",
-    "license": "MIT",
-    "tags": [
+    "name"          : "glot",
+    "license"       : "MIT",
+    "tags"          : [
         "cross",
         "functional"
     ],
-    "description": "Haxe AST without the position values",
+    "description"   : "Haxe AST without the position values",
     "contributors": [
         "0b1kn00b"
     ],
-    "releasenote": "initial",
-    "version": "0.1.0",
-    "url": "https://github.com/ohmrun/glot",
-    "dependencies": {
+    "releasenote"   : "initial",
+    "version"       : "0.1.0",
+    "url"           : "https://github.com/ohmrun/glot",
+    "dependencies"  : {
         "stx_pico"          : "",
         "stx_nano"          : "",
         "stx_log"           : "",
-        "stx_ds"            : ""
+        "stx_ds"            : "",
+        "stx_om"            : ""
     },
     "classPath": "src/main/haxe"
 }

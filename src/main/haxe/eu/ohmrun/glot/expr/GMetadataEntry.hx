@@ -14,8 +14,7 @@ typedef GMetadataEntryDef = {
 }
 @:using(eu.ohmrun.glot.expr.GMetadataEntry.GMetadataEntryLift)
 @:forward abstract GMetadataEntry(GMetadataEntryDef) from GMetadataEntryDef to GMetadataEntryDef{
-  static public var __(default,never) = new GMetadataEntryCtr();
-  public function new(self) this = self;
+    public function new(self) this = self;
   @:noUsing static public function lift(self:GMetadataEntryDef):GMetadataEntry return new GMetadataEntry(self);
   public function prj():GMetadataEntryDef return this;
   private var self(get,never):GMetadataEntry;

@@ -11,11 +11,6 @@ class GFunctionCtr extends Clazz{
       __.option(params).map(f -> f(Expr.GTypeParamDecl)).defv(null)
     );
   }
-  // public function thunk(expr:GExpr){
-  //   return Make(
-  //     _ -> [],
-  //   )
-  // }
 }
 typedef GFunctionDef = {
 	final args    : Cluster<GFunctionArg>;
@@ -25,8 +20,7 @@ typedef GFunctionDef = {
 }
 @:using(eu.ohmrun.glot.expr.GFunction.GFunctionLift)
 @:forward abstract GFunction(GFunctionDef) from GFunctionDef to GFunctionDef{
-  static public var __(default,never) = new GFunctionCtr();
-  static public var _(default,never) = GFunctionLift;
+    static public var _(default,never) = GFunctionLift;
   public function new(self) this = self;
   @:noUsing static public function lift(self:GFunctionDef):GFunction return new GFunction(self);
   @:noUsing static public function make(args:Cluster<GFunctionArg>,?ret:GComplexType,?expr:GExpr,?params:Cluster<GTypeParamDecl>){

@@ -24,6 +24,7 @@ abstract GStringLiteralKind(GStringLiteralKindSum) from GStringLiteralKindSum to
 }
 class GStringLiteralKindLift{
 	#if macro
+	
 	static public function to_macro_at(self:GStringLiteralKind,pos:Position):StringLiteralKind{
 		return switch(self){
 			case GDoubleQuotes: DoubleQuotes;

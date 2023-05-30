@@ -22,8 +22,7 @@ typedef GFunctionArgDef = {
 }
 @:using(eu.ohmrun.glot.expr.GFunctionArg.GFunctionArgLift)
 @:forward abstract GFunctionArg(GFunctionArgDef) from GFunctionArgDef to GFunctionArgDef{
-  static public var __(default,never) = new GFunctionArgCtr();
-  public function new(self) this = self;
+    public function new(self) this = self;
   @:noUsing static public function lift(self:GFunctionArgDef):GFunctionArg return new GFunctionArg(self);
   @:noUsing static public function make(name:String,type:GComplexType,?opt:Bool,?value:GExpr,?meta:GMetadata){
     return GFunctionArg.lift({

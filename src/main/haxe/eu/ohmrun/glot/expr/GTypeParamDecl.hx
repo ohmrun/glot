@@ -43,6 +43,17 @@ typedef GTypeParamDeclDef = {
 }
 class GTypeParamDeclLift{
   #if macro
+  static public function from_macro_at(self:TypeParamDecl,pos:Position):GTypeParamDecl{
+    return @:privateAccess {
+      name        : self.name,
+      constraints : __.option(self.constraints).map(x -> x.map(y -> y.from_macro_at(pos)).prj()).defv([]),
+      params      : __.option(self.params).map(x -> x.map(y -> y.from_macro_at(pos)).prj()).defv([]),
+      meta        : __.option(self.meta).map(x -> x.map(y -> y.from_macro_at(pos)).prj()).defv([]),
+      #if (haxe_ver > 4.205) 
+      defaultType : __.option(self.defaultType).map(x -> x.from_macro_at(pos)).defv(null)
+      #end
+    };
+  }
   static public function to_macro_at(self:GTypeParamDecl,pos:Position):TypeParamDecl{
     return @:privateAccess {
       name        : self.name,

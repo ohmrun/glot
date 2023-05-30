@@ -28,7 +28,6 @@ enum GAccessSum {
 }
 @:using(eu.ohmrun.glot.expr.GAccess.GAccessLift)
 abstract GAccess(GAccessSum) from GAccessSum to GAccessSum{
-	static public var __(default,never) = new GAccessCtr();
   public function new(self) this = self;
   @:noUsing static public function lift(self:GAccessSum):GAccess return new GAccess(self);
 

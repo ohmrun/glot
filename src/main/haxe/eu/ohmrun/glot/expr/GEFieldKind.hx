@@ -26,10 +26,11 @@ abstract GEFieldKind(GEFieldKindSum) from GEFieldKindSum to GEFieldKindSum{
 }
 class GEFieldKindLift{
 	#if macro
-	static public function to_macro_at(self:GEFieldKind,pos:Position){
+	
+	static public function to_macro_at(self:GEFieldKind,pos:Position):EFieldKind{
 		return switch(self){
-			case GNormal 	: Normal;
-			case GSafe 		: Safe;
+			case GNormal 	: EFieldKind.Normal;
+			case GSafe 		: EFieldKind.Safe;
 		}
 	}
 	#end

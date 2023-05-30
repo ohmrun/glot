@@ -156,8 +156,7 @@ class GExprCtr extends Clazz{
 }
 @:using(eu.ohmrun.glot.expr.GExpr.GExprLift)
 @:forward abstract GExpr(GExprSum) from GExprSum to GExprSum{
-  static public var __(default,never) = new GExprCtr();
-  public function new(self) this = self;
+    public function new(self) this = self;
   @:noUsing static public function lift(self:GExprSum):GExpr return new GExpr(self);
 
   public function prj():GExprSum return this;

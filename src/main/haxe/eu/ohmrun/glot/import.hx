@@ -8,3 +8,6 @@ using stx.Log;
 using eu.ohmrun.Glot;
 
 import haxe.macro.Expr;
+import haxe.macro.Type;
+import haxe.macro.Context;
+import haxe.macro.Compiler;

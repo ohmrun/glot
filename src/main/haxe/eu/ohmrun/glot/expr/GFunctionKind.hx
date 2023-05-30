@@ -17,8 +17,10 @@ enum GFunctionKindSum{
 	GFNamed(name:String, ?inlined:Bool);
 	GFArrow;
 }
+@:using(eu.ohmrun.glot.expr.GFunctionKind.GFunctionKindLift)
 abstract GFunctionKind(GFunctionKindSum) from GFunctionKindSum to GFunctionKindSum{
 	public function new(self) this = self;
+	static public var _(default,never) = GFunctionKindLift;
 	@:noUsing static public function lift(self:GFunctionKindSum):GFunctionKind return new GFunctionKind(self);
 
 	public function prj():GFunctionKindSum return this;

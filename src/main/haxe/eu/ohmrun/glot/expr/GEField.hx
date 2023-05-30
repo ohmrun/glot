@@ -22,8 +22,7 @@ typedef GEFieldDef = {
 }
 @:using(eu.ohmrun.glot.expr.GEField.GEFieldLift)
 @:forward abstract GEField(GEFieldDef) from GEFieldDef to GEFieldDef{
-  static public var __(default,never) = new GEFieldCtr();
-  public function new(self) this = self;
+    public function new(self) this = self;
   @:noUsing static public function lift(self:GEFieldDef):GEField return new GEField(self);
   @:noUsing static public function make(name:String,kind:GFieldType,?access,?meta,?doc){
     return lift({
@@ -44,6 +43,7 @@ typedef GEFieldDef = {
 }
 class GEFieldLift{
   #if macro
+  
   static public function to_macro_at(self:GEField,pos:Position):Field{
     return @:privateAccess {
       name      : self.name,

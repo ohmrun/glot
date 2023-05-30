@@ -1,0 +1,9 @@
+-main eu.ohmrun.glot.Test
+-cp src/main/haxe
+-cp src/test/haxe
+-lib stx_test
+--interp
+-L stx_pico
+-L stx_nano
+-L stx_ds
+-L stx_om

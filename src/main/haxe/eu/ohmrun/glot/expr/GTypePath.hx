@@ -31,8 +31,7 @@ typedef GTypePathDef = {
 }
 @:using(eu.ohmrun.glot.expr.GTypePath.GTypePathLift)
 @:forward abstract GTypePath(GTypePathDef) from GTypePathDef to GTypePathDef{
-  static public var __(default,never) = new GTypePathCtr();
-  public function new(self) this = self;
+    public function new(self) this = self;
   @:noUsing static public function lift(self:GTypePathDef):GTypePath return new GTypePath(self);
   @:noUsing static public function make(name,?pack,?sub,?params){
     return lift({

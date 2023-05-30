@@ -38,7 +38,7 @@ typedef GCatchDef = {
 }
 class GCatchLift{
   #if macro
-  static public function to_macro_at(self:GCatch,pos:Position){
+  static public function to_macro_at(self:GCatch,pos:Position):Catch{
     return {
       name  : self.name,
       expr  : self.expr.to_macro_at(pos),

@@ -27,8 +27,7 @@ class GPropAccessCtr extends Clazz{
 }
 @:using(eu.ohmrun.glot.expr.GPropAccess.GPropAccessLift)
 @:forward abstract GPropAccess(GPropAccessSum) from GPropAccessSum to GPropAccessSum{
-  static public var __(default,never) = new GPropAccessCtr();
-  public function new(self) this = self;
+    public function new(self) this = self;
   @:noUsing static public function lift(self:GPropAccessSum):GPropAccess return new GPropAccess(self);
 
   public function prj():GPropAccessSum return this;

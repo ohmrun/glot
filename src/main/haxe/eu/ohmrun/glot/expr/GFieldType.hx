@@ -28,8 +28,7 @@ enum GFieldTypeSum {
 }
 @:using(eu.ohmrun.glot.expr.GFieldType.GFieldTypeLift)
 abstract GFieldType(GFieldTypeSum) from GFieldTypeSum to GFieldTypeSum{
-  static public var __(default,never) = new GFieldTypeCtr();
-  public function new(self) this = self;
+    public function new(self) this = self;
   @:noUsing static public function lift(self:GFieldTypeSum):GFieldType return new GFieldType(self);
 
   public function prj():GFieldTypeSum return this;
@@ -42,11 +41,14 @@ abstract GFieldType(GFieldTypeSum) from GFieldTypeSum to GFieldTypeSum{
 }
 class GFieldTypeLift{
   #if macro
-  static public function to_macro_at(self:GFieldType,pos:Position){
+  static public function to_macro_at(self:GFieldType,pos:Position):FieldType{
     return switch(self){
-      case GFVar( t  , e)            :  FVar(__.option(t).map(ct -> ct.to_macro_at(pos)).defv(null)  , __.option(e).map(e -> e.to_macro_at(pos)).defv(null));
-      case GFFun( f  )               :  FFun( GFunction._.to_macro_at(f,pos)  );
-      case GFProp( get , set , t, e) :  FProp( 
+      case GFieldTypeSum.GFVar( t  , e)            :  FVar(
+        __.option(t).map(ct -> ct.to_macro_at(pos)).defv(null)  , 
+        __.option(e).map(e -> e.to_macro_at(pos)).defv(null))
+      ;
+      case GFieldTypeSum.GFFun( f  )               :  FFun( GFunction._.to_macro_at(f,pos)  );
+      case GFieldTypeSum.GFProp( get , set , t, e) :  FProp( 
         get.getting() , 
         set.setting() , 
         __.option(t).map(x -> x.to_macro_at(pos)).defv(null) , 

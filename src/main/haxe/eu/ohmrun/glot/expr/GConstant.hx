@@ -1,9 +1,6 @@
 package eu.ohmrun.glot.expr;
 
 class GConstantCtr extends Clazz{
-  private function lift(self:GConstantSum):GConstant{
-    return GConstant.lift(self);
-  }
   public function Int(v:String,?s:String){
     return GConstant.lift(GCInt(v,s));
   }
@@ -29,8 +26,7 @@ enum GConstantSum{
 }
 @:using(eu.ohmrun.glot.expr.GConstant.GConstantLift)
 abstract GConstant(GConstantSum) from GConstantSum to GConstantSum{
-  static public var __(default,never) = new GConstantCtr();
-  public function new(self) this = self;
+    public function new(self) this = self;
   @:noUsing static public function lift(self:GConstantSum):GConstant return new GConstant(self);
 
   public function prj():GConstantSum return this;
@@ -47,6 +43,7 @@ abstract GConstant(GConstantSum) from GConstantSum to GConstantSum{
 }
 class GConstantLift{
   #if macro
+
   static public function to_macro_at(self:GConstant,pos:Position){
     return switch(self){
       #if (haxe_ver > 4.205) 

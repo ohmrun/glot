@@ -45,8 +45,7 @@ enum GTypeDefKindSum {
 }
 @:using(eu.ohmrun.glot.expr.GTypeDefKind.GTypeDefKindLift)
 abstract GTypeDefKind(GTypeDefKindSum) from GTypeDefKindSum to GTypeDefKindSum{
-  static public var __(default,never) = new GTypeDefKindCtr();
-  public function new(self) this = self;
+    public function new(self) this = self;
   @:noUsing static public function lift(self:GTypeDefKindSum):GTypeDefKind return new GTypeDefKind(self);
 
   public function prj():GTypeDefKindSum return this;
