@@ -33,6 +33,16 @@ class GPropAccessCtr extends Clazz{
   public function prj():GPropAccessSum return this;
   private var self(get,never):GPropAccess;
   private function get_self():GPropAccess return lift(this);
+
+  static public function fromString(str:String){
+    return lift(switch(str){
+      case "get"      : GPAccFn;
+      case "default"  : GPAccDefault;
+      case "null"     : GPAccNull;
+      case "never"    : GPAccNever;
+      default         : throw 'unknown GPropAccessSum instrance: $str';
+    });
+  }
 }
 class GPropAccessLift{
   static public function getting(self:GPropAccess){
@@ -41,7 +51,7 @@ class GPropAccessLift{
       case GPAccDefault   : 'default';
       case GPAccNull      : 'null';
       case GPAccNever     : 'never';
-      default             : throw 'unsupported HPropAcess "#${self}"';
+      default             : throw 'unsupported GPropAcess "#${self}"';
     }
   }
   static public function setting(self:GPropAccess){

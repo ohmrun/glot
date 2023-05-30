@@ -26,7 +26,6 @@ abstract GEFieldKind(GEFieldKindSum) from GEFieldKindSum to GEFieldKindSum{
 }
 class GEFieldKindLift{
 	#if macro
-	
 	static public function to_macro_at(self:GEFieldKind,pos:Position):EFieldKind{
 		return switch(self){
 			case GNormal 	: EFieldKind.Normal;
