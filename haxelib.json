@@ -10,7 +10,7 @@
         "0b1kn00b"
     ],
     "releasenote"   : "initial",
-    "version"       : "0.1.0",
+    "version"       : "0.2.0",
     "url"           : "https://github.com/ohmrun/glot",
     "dependencies"  : {
         "stx_pico"          : "",
