@@ -199,7 +199,8 @@ class LiftCatchToGlot{
   }
   #end
 }
-typedef GlotSpine = stx.om.spine.glot.GlotSpine;
+typedef GlotSpineDef  = stx.om.spine.glot.GlotSpine.GlotSpineDef;
+typedef GlotSpine     = stx.om.spine.glot.GlotSpine;
 
 class LiftGlotToSpine{
   static public function toSpine(self:GExpr):Upshot<GlotSpine,OMFailure>{
