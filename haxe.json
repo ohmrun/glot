@@ -1,6 +1,6 @@
 {
   "build" : {
-    "-L" : ["stx_pico","stx_nano","stx_ds","stx_om","pml_om"],
+    "-L" : ["stx_pico","stx_nano","stx_ds","stx_om","pml","pml_om"],
     "-cp" : "src/main/haxe",
     "unit" : {
       "--macro" : [

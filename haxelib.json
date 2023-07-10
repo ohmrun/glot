@@ -17,7 +17,9 @@
         "stx_nano"          : "",
         "stx_log"           : "",
         "stx_ds"            : "",
-        "stx_om"            : ""
+        "stx_om"            : "",
+        "pml"               : "",
+        "pml_om"            : "" 
     },
     "classPath": "src/main/haxe"
 }
