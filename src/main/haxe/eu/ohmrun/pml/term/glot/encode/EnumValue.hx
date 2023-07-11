@@ -17,6 +17,6 @@ class EnumValue extends Clazz{
       LinkedList.unit()
     );
 
-    return PGroup(constructor_params.cons(constructor_identity));
+    return PGroup(constructor_params.cons(identity));
   }
 }

@@ -12,6 +12,10 @@ class Module extends Clazz{
    private function get_encode():Encode{
      return __.option(this.encode).def(() -> this.encode = new Encode());
    } 
+   @:isVar public var decode(get,null):Decode;
+   private function get_decode():Decode{
+     return __.option(this.decode).def(() -> this.decode = new Decode());
+   }
 }
 private class Encode extends Clazz{
   @:isVar public var GExpr(get,null):GExpr;

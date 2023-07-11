@@ -1,0 +1,29 @@
+(
+ (:eu.ohmrun.glot.expr.GExprSum :GEBlock) 
+ [
+  (
+   (:eu.ohmrun.glot.expr.GExprSum :GEFor) 
+   (
+    (:eu.ohmrun.glot.expr.GExprSum :GEBinop) 
+    ((:eu.ohmrun.glot.expr.GBinopSum :GOpIn)) 
+    ((:eu.ohmrun.glot.expr.GExprSum :GEConst) ((:eu.ohmrun.glot.expr.GConstantSum :GCIdent) AnSym(i))) 
+    (
+     (:eu.ohmrun.glot.expr.GExprSum :GEBinop) 
+     ((:eu.ohmrun.glot.expr.GBinopSum :GOpInterval)) 
+     ((:eu.ohmrun.glot.expr.GExprSum :GEConst) ((:eu.ohmrun.glot.expr.GConstantSum :GCInt) AnSym(0) ())) 
+     ((:eu.ohmrun.glot.expr.GExprSum :GEConst) ((:eu.ohmrun.glot.expr.GConstantSum :GCInt) AnSym(10) ()))
+    )
+   ) 
+   (
+    (:eu.ohmrun.glot.expr.GExprSum :GEBlock) 
+    [
+     (
+      (:eu.ohmrun.glot.expr.GExprSum :GECall) 
+      ((:eu.ohmrun.glot.expr.GExprSum :GEConst) ((:eu.ohmrun.glot.expr.GConstantSum :GCIdent) AnSym(trace))) 
+      [((:eu.ohmrun.glot.expr.GExprSum :GEConst) ((:eu.ohmrun.glot.expr.GConstantSum :GCIdent) AnSym(i)))]
+     )
+    ]
+   )
+  )
+ ]
+)

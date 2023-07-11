@@ -31,7 +31,9 @@ class GlotTest extends TestCase{
     final glot   = e.toGlot();
     final pexpr  = encode.GExpr.apply(glot);
     trace(pexpr.toString());
+    final decode = __.pml().glot().decode;
+    final gexpr  : GExpr = decode.apply(pexpr).fudge();
     trace("GROOOOOOOO");
-    return macro {}
+    return gexpr.to_macro_at(haxe.macro.Context.currentPos());
   }
 }
