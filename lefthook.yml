@@ -16,7 +16,7 @@ pre-commit:
   parallel: true
   commands:
     unit:
-      run: hx build unit
+      run: hb build unit
 #     rubocop:
 #       tags: backend style
 #       glob: "*.rb"
